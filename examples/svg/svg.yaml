@@ -1,0 +1,31 @@
+# svg.yaml — C1 矢量图内化示例（type: svg → 原生 DrawingML custGeom）
+# ① 原理验证：radar.svg（defs/use/symbol + 网格描边 + 数据区填充）→ 5 片先验形状；
+# ② 应用：svg 示意图 + 文字标题（可编辑矢量图，非位图）。
+meta:
+  title: 矢量图内化
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  slides:
+    - title: 原生矢量图
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.0, 0.7]
+          text: 'type: svg → 原生 DrawingML 矢量图'
+          text_style: {fs: 30, bold: true, align: left}
+        - id: fig_radar
+          type: svg
+          rect: [1.4, 1.7, 5.0, 3.7]
+          src: ../../assets/figures/radar.svg
+        - id: cap_radar
+          type: text
+          rect: [1.4, 5.5, 5.0, 0.6]
+          text: 雷达示意图 · 5 片形状
+          text_style: {fs: 16, align: center}
+        - id: note
+          type: text
+          rect: [7.2, 1.8, 5.4, 3.4]
+          text: 矢量放大不糊、可逐形状换色/移动/删除——\n与 typst/image 整块图不同，
+                它是 Office 原生 custGeom 形状。
+          text_style: {fs: 16, align: left}

@@ -1,0 +1,127 @@
+# examples/method/cylinder.yaml — 区域修复的「动边界」示意（P5 方法图还原·最小验证）
+#
+# 演示新积木：
+#   · shape.kind: cylinder —— 圆柱复合（半透明侧壁 + 顶/底椭圆 + 2 条等高弧）。
+#     slice: 1.0 完整圆柱；<1.0 剖视（不画顶面示敞口）；opacity 侧壁透明度；
+#     text 标注文字（居中于圆柱中部，自动对比度反色，guard 以侧壁主色为底）。
+#   · type: curve —— 自由曲线（rect 包围盒 + 归一化点列 0~1，freeform polyline）。
+#     style: {color, weight, dash} 线语义；点数 ≥3，布局成弧。
+#   · style.border_dash —— 虚线段式分区框（原稿虚线分区）。
+#
+# 语义：R(t₀) 为初始边界（大圆柱，完整），R(t) 为收缩后边界（小圆柱），
+# 二者间为已扩散区域；扩散前沿 u(x, t) 用一条曲线示意（方法学备注见 notes）。
+meta:
+  title: 区域修复的动边界示意
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+  notes: >
+    方法学备注（P5 moving-boundary 还原）：
+    1) 层间像素在不同时段先后达到修复阈值 → 边界随时间向内部收缩，
+       整体轮廓 M(t) 单调收敛到最小重叠区域 Ω*。
+    2) R(t₀)（大圆柱）= 初始修复边界；R(t)（小圆柱）= 当前时刻边界，
+       两者之间为已完成扩散/修复的区域。
+    3) 扩散前沿用一条示意曲线（u(x,t)，非数据驱动——数据图请用 type: chart）。
+    4) 本页由 SPEC 声明式积木拼成（两个 cylinder + 一条 curve + 虚线分区框），
+       全部原生可编辑；几何由 ir_builder 解出，绝无手改产物。
+
+palette:
+  blue:   {solid: "#2D6CDF"}   # R(t₀) 主色
+  blue_d: {solid: "#0F2A5C"}   # 当前边界主色（深）
+  ink:    {solid: "#1F2A44"}
+  soft:   {solid: "#F4F8FC"}   # 分区框浅底
+  accent: {solid: "#E8590C"}   # 扩散前沿
+
+elements:
+- id: title
+  type: text
+  rect: [0.5, 0.5, 12.33, 0.6]
+  text: 区域修复的动边界示意图（cylinder / curve 积木）
+  text_style: {fs: 24, bold: true, color: ink}
+
+# 虚线分区框（修复区 Ω）：4 条虚线边（0 宽/0 高线盒，与内容不相交）
+- id: bd_top
+  type: line
+  rect: [1.2, 1.3, 10.9, 0.0]
+  x1: 1.2
+  y1: 1.3
+  x2: 12.1
+  y2: 1.3
+  color: blue
+  weight: 1.25
+  dash: dot
+- id: bd_bot
+  type: line
+  rect: [1.2, 6.8, 10.9, 0.0]
+  x1: 1.2
+  y1: 6.8
+  x2: 12.1
+  y2: 6.8
+  color: blue
+  weight: 1.25
+  dash: dot
+- id: bd_left
+  type: line
+  rect: [1.2, 1.3, 0.0, 5.5]
+  x1: 1.2
+  y1: 1.3
+  x2: 1.2
+  y2: 6.8
+  color: blue
+  weight: 1.25
+  dash: dot
+- id: bd_right
+  type: line
+  rect: [12.1, 1.3, 0.0, 5.5]
+  x1: 12.1
+  y1: 1.3
+  x2: 12.1
+  y2: 6.8
+  color: blue
+  weight: 1.25
+  dash: dot
+
+# R(t₀) 初始边界：完整圆柱，半透明侧壁 + 顶/底椭圆 + 2 条等高弧
+- id: cyl_rt0
+  type: shape
+  kind: cylinder
+  rect: [1.8, 2.0, 5.6, 3.4]
+  slice: 1.0
+  opacity: 0.30
+  style: {fill: blue}
+  text: R(t₀)
+  text_style: {fs: 15, bold: true, color: ink}
+
+# R(t) 收缩后边界：较深主色、较小的圆柱（当前时刻）
+- id: cyl_rt
+  type: shape
+  kind: cylinder
+  rect: [7.9, 3.0, 3.4, 2.5]
+  slice: 1.0
+  opacity: 0.35
+  style: {fill: blue_d}
+  text: R(t)
+  text_style: {fs: 13, bold: true, color: "#FFFFFF"}
+
+# 扩散前沿示意曲线：从 R(t₀) 边界穿出，落进 R(t)（非数据驱动，示意）
+- id: u_curve
+  type: curve
+  rect: [6.9, 2.2, 1.9, 2.1]
+  points:
+  - [0.00, 0.60]
+  - [0.30, 0.42]
+  - [0.62, 0.50]
+  - [1.00, 0.35]
+  style: {color: accent, weight: 2.0}
+
+# 图内标注（框内空白区，不与形状重叠）
+- id: lbl_contract
+  type: text
+  rect: [7.5, 5.75, 4.4, 0.5]
+  text: 边界收缩  R(t) ⊆ R(t₀)
+  text_style: {fs: 12, color: ink}
+
+- id: lbl_front
+  type: text
+  rect: [1.9, 5.75, 4.4, 0.5]
+  text: 扩散前沿 u(x, t)（示意）
+  text_style: {fs: 12, color: ink}

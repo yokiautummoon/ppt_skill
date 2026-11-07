@@ -1,0 +1,54 @@
+# examples/pageintent/section.yaml — 页型意图（page_intent）示例：section 破格节标题页
+#
+# grilling 收敛：agent 只选页型意图 token，布局由引擎确定性展开。
+#   page_intent: section → 引擎展开破格节标题版式族：超大节序号贯穿（fs=96，
+#     版心左上、纵向贯穿 ≥ 版心 40%）+ 左侧竖向强调条（节章节感）+ 水平引导线
+#     + 节名大字号层级（num 字号 > title 字号 = 数字是主导视觉）。破格由 verify
+#     断言背书（贯穿度 + 字号层级），rect 全由 ir_builder 解出。
+#   section 字段：num（必填，节序号）/ title（必填，节名）/ accent（可选）。
+#   --com 无要求（引擎展开 = 普通元素，渲染照常，零 Office 全链可证）。
+#
+# 页型分类谱系（axiom）见 references/page-intents.md；本示例演示其中 section。
+meta:
+  title: 页型意图 · section 破格节标题页（审定菜单选择）
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  framework:
+    header: {text: "2026 · 经营分析会", align: right, fs: 10, color: muted}
+    footer: {text: "机密 · 第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：节标题（引擎展开，agent 零坐标） ============
+    - title: 节标题
+      page_intent: section
+      framework: {footer: {text: ""}}     # 节页不计页码
+      section:
+        num: "02"
+        title: 预算执行与偏差分析
+        accent: acc
+
+    # ============ 页 2：章节正文（普通内容页对照） ============
+    - title: 正文
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 8.0, 0.8]
+          text: 预算执行总览
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: t_overview
+          type: table
+          rect: [0.8, 1.9, 11.73, 4.6]
+          data:
+            - ["科目", "年度预算", "已执行", "执行率", "偏差说明"]
+            - ["研发投入", "1,200 万", "1,075 万", "89.6%", "Q2 立项节奏放缓"]
+            - ["营销费用", "860 万", "791 万", "92.0%", "线下投放延后 2 周"]
+            - ["管理费用", "640 万", "602 万", "94.1%", "接近预算，需控增速"]
+            - ["资本开支", "900 万", "612 万", "68.0%", "产线验收未完成，结转下期"]
+          header: {fs: 13, fill: deep, color: "#FFFFFF", bold: true}
+          body: {fs: 12}
+          borders: true
+
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  muted: "#8899AA"

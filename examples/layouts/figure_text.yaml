@@ -1,0 +1,27 @@
+# examples/layouts/figure_text.yaml — 内容页结构生成样板 · figure_text（图文并置）
+# 图侧 = 图片（声明 image）或占位框（缺省，B3 同律：缺图不静默）；文侧 = blocks。
+# 变体：right（图右文左，首项）/ left（图左文右）。
+meta:
+  title: 内容版式 · figure_text
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme: nsfc_blue
+  slides:
+    - title: figure_text right
+      page_intent: figure_text
+      figure_text:
+        title: 图文并置（图右）
+        caption: 图 1 · 占位示意（补齐 image 后替换）
+        blocks:
+          - 左侧为正文块：每个 block 一行，引擎自动加项目符号。
+          - 右侧图侧宽占版心固定比例，保证图文并置的破格感。
+          - 声明 image 路径即替换占位框为真实图片。
+    - title: figure_text left
+      page_intent: figure_text
+      figure_text:
+        title: 图文并置（图左）
+        variant: left
+        blocks:
+          - 图侧可置于左或右，由 variant/side 决定。
+          - 文侧自适应剩余宽度。

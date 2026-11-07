@@ -1,0 +1,26 @@
+# glue COM 绑定测试：两形状 + relations.glue（BeginConnect/EndConnect 随动自检）
+meta:
+  title: glue COM 绑定测试
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  prim: {solid: "#2D6CDF"}
+elements:
+  - id: s1
+    type: shape
+    kind: rounded_rect
+    rect: [1.0, 3.2, 2.0, 1.0]
+    style: {fill: prim}
+    text: 起点
+  - id: s2
+    type: shape
+    kind: diamond
+    rect: [6.5, 3.2, 2.0, 1.0]
+    style: {fill: prim}
+    text: 终点
+relations:
+  glue:
+    - from: s1
+      to: s2
+      label: 连线

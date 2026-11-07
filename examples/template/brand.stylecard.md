@@ -1,0 +1,85 @@
+# 风格卡：brand.pptx
+
+- 页面尺寸: 10.000 × 5.000 in
+- 主题色: accent1 #2D6CDF · accent2 #C0504D · accent3 #9BBB59 · accent4 #8064A2 · accent5 #4BACC6 · accent6 #F79646 · dk1 #000000 · dk2 #1F497D · lt1 #FFFFFF · lt2 #EEECE1
+- 字族: 正文 latin=Calibri · ea=—；标题 latin=Calibri · ea=—
+
+### 母版 / 版式
+- 母版 ppt/slideMasters/slideMaster1.xml · 背景 solid · 占位符 5 项
+  - idx 0 TITLE (1) Title Placeholder 1 [0.5, 0.3, 9.0, 1.25]
+  - idx 1 BODY (2) Text Placeholder 2 [0.5, 1.75, 9.0, 4.95]
+  - idx 2 DATE (16) Date Placeholder 3 [0.5, 6.951, 2.333, 0.399]
+  - idx 3 FOOTER (15) Footer Placeholder 4 [3.417, 6.951, 3.167, 0.399]
+  - idx 4 SLIDE_NUMBER (13) Slide Number Placeholder 5 [7.167, 6.951, 2.333, 0.399]
+- 版式「Title Slide」（slideMaster1.xml）· 背景 inherit · 占位符 5 项
+  - idx 0 CENTER_TITLE (3) Title 1 [0.75, 2.33, 8.5, 1.608]
+  - idx 1 SUBTITLE (4) Subtitle 2 [1.5, 4.25, 7.0, 1.917]
+  - idx 10 DATE (16) Date Placeholder 3 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 4 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 5 [7.167, 6.951, 2.333, 0.399]
+- 版式「Title and Content」（slideMaster1.xml）· 背景 inherit · 占位符 5 项
+  - idx 0 TITLE (1) Title 1 [0.5, 0.3, 9.0, 1.25]
+  - idx 1 OBJECT (7) Content Placeholder 2 [0.5, 1.75, 9.0, 4.95]
+  - idx 10 DATE (16) Date Placeholder 3 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 4 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 5 [7.167, 6.951, 2.333, 0.399]
+- 版式「Section Header」（slideMaster1.xml）· 背景 inherit · 占位符 5 项
+  - idx 0 TITLE (1) Title 1 [0.79, 4.819, 8.5, 1.49]
+  - idx 1 BODY (2) Text Placeholder 2 [0.79, 3.179, 8.5, 1.641]
+  - idx 10 DATE (16) Date Placeholder 3 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 4 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 5 [7.167, 6.951, 2.333, 0.399]
+- 版式「Two Content」（slideMaster1.xml）· 背景 inherit · 占位符 6 项
+  - idx 0 TITLE (1) Title 1 [0.5, 0.3, 9.0, 1.25]
+  - idx 1 OBJECT (7) Content Placeholder 2 [0.5, 1.75, 4.417, 4.95]
+  - idx 2 OBJECT (7) Content Placeholder 3 [5.083, 1.75, 4.417, 4.95]
+  - idx 10 DATE (16) Date Placeholder 4 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 5 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 6 [7.167, 6.951, 2.333, 0.399]
+- 版式「Comparison」（slideMaster1.xml）· 背景 inherit · 占位符 8 项
+  - idx 0 TITLE (1) Title 1 [0.5, 0.3, 9.0, 1.25]
+  - idx 1 BODY (2) Text Placeholder 2 [0.5, 1.679, 4.418, 0.7]
+  - idx 2 OBJECT (7) Content Placeholder 3 [0.5, 2.378, 4.418, 4.321]
+  - idx 3 BODY (2) Text Placeholder 4 [5.08, 1.679, 4.42, 0.7]
+  - idx 4 OBJECT (7) Content Placeholder 5 [5.08, 2.378, 4.42, 4.321]
+  - idx 10 DATE (16) Date Placeholder 6 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 7 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 8 [7.167, 6.951, 2.333, 0.399]
+- 版式「Title Only」（slideMaster1.xml）· 背景 inherit · 占位符 4 项
+  - idx 0 TITLE (1) Title 1 [0.5, 0.3, 9.0, 1.25]
+  - idx 10 DATE (16) Date Placeholder 2 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 3 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 4 [7.167, 6.951, 2.333, 0.399]
+- 版式「Blank」（slideMaster1.xml）· 背景 inherit · 占位符 3 项
+  - idx 10 DATE (16) Date Placeholder 1 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 2 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 3 [7.167, 6.951, 2.333, 0.399]
+- 版式「Content with Caption」（slideMaster1.xml）· 背景 inherit · 占位符 6 项
+  - idx 0 TITLE (1) Title 1 [0.5, 0.299, 3.29, 1.271]
+  - idx 1 OBJECT (7) Content Placeholder 2 [3.91, 0.299, 5.59, 6.401]
+  - idx 2 BODY (2) Text Placeholder 3 [0.5, 1.569, 3.29, 5.13]
+  - idx 10 DATE (16) Date Placeholder 4 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 5 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 6 [7.167, 6.951, 2.333, 0.399]
+- 版式「Picture with Caption」（slideMaster1.xml）· 背景 inherit · 占位符 6 项
+  - idx 0 TITLE (1) Title 1 [1.96, 5.25, 6.0, 0.62]
+  - idx 1 PICTURE (18) Picture Placeholder 2 [1.96, 0.67, 6.0, 4.5]
+  - idx 2 BODY (2) Text Placeholder 3 [1.96, 5.87, 6.0, 0.88]
+  - idx 10 DATE (16) Date Placeholder 4 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 5 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 6 [7.167, 6.951, 2.333, 0.399]
+- 版式「Title and Vertical Text」（slideMaster1.xml）· 背景 inherit · 占位符 5 项
+  - idx 0 TITLE (1) Title 1 [0.5, 0.3, 9.0, 1.25]
+  - idx 1 BODY (2) Vertical Text Placeholder 2 [0.5, 1.75, 9.0, 4.95]
+  - idx 10 DATE (16) Date Placeholder 3 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 4 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 5 [7.167, 6.951, 2.333, 0.399]
+- 版式「Vertical Title and Text」（slideMaster1.xml）· 背景 inherit · 占位符 5 项
+  - idx 0 TITLE (1) Vertical Title 1 [7.25, 0.3, 2.25, 6.399]
+  - idx 1 BODY (2) Vertical Text Placeholder 2 [0.5, 0.3, 6.583, 6.399]
+  - idx 10 DATE (16) Date Placeholder 3 [0.5, 6.951, 2.333, 0.399]
+  - idx 11 FOOTER (15) Footer Placeholder 4 [3.417, 6.951, 3.167, 0.399]
+  - idx 12 SLIDE_NUMBER (13) Slide Number Placeholder 5 [7.167, 6.951, 2.333, 0.399]
+
+### 页映射（成品 deck 场景）
+1 → Title Slide, 2 → Blank

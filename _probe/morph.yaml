@@ -1,0 +1,38 @@
+# morph.yaml — C3 平滑切换（Morph）探针：多页同名对象 + effect=morph
+# 同名对象（id 相同）跨页自动补间变形；dur = 毫秒时长（仅 morph）
+meta:
+  title: Morph 平滑切换探针
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  slides:
+    - title: 封面
+      transition: {effect: morph, dur: 900}
+      elements:
+        - id: badge
+          type: shape
+          kind: rounded_rect
+          rect: [1.0, 2.6, 2.4, 2.4]
+          style: {fill: '#2D6CDF'}
+          text: 壹
+          text_style: {fs: 60, bold: true, color: '#FFFFFF'}
+        - id: title
+          type: text
+          rect: [4.2, 3.4, 8.0, 1.2]
+          text: 平滑切换演示
+          text_style: {fs: 32, bold: true, align: left}
+    - title: 章节
+      transition: {effect: morph}     # dur 缺省 700
+      elements:
+        - id: badge
+          type: shape
+          kind: rounded_rect
+          rect: [9.6, 0.9, 3.0, 3.0]
+          style: {fill: '#2D6CDF'}
+          text: 壹
+          text_style: {fs: 84, bold: true, color: '#FFFFFF'}
+        - id: title
+          type: text
+          rect: [1.0, 4.4, 11.3, 1.0]
+          text: 第一章 · 概述
+          text_style: {fs: 40, bold: true, align: left}

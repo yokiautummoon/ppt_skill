@@ -1,0 +1,36 @@
+# 编辑单元示例（scansci 内化块 2 回归）：互遮三件套声明编辑组 + COM 组
+meta:
+  title: 编辑单元示例
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  d: '#2D6CDF'
+  p: '#1F2A44'
+elements:
+  # 玻璃/边框/高光三件套必然互遮 → 编辑单元声明使其合法（G4 第三源）+ COM 组
+  - id: frame
+    type: shape
+    kind: rounded_rect
+    rect: [2.0, 1.5, 4.0, 3.0]
+    style: {fill: p, border: d}
+  - id: glass
+    type: shape
+    kind: rounded_rect
+    rect: [2.3, 1.8, 3.4, 2.4]
+    style: {fill: '#D8E6F7', border: none}   # 浅蓝玻璃（调色板外 hex 合法）
+  - id: highlight
+    type: shape
+    kind: rounded_rect
+    rect: [2.6, 2.1, 1.2, 0.5]
+    style: {fill: '#9DC3F2', border: none}
+  - id: pump
+    type: shape
+    kind: rounded_rect
+    rect: [8.0, 2.0, 2.0, 1.0]
+    style: {fill: p}
+    text: 泵
+relations:
+  edit_groups:
+    - id: window
+      members: [frame, glass, highlight]

@@ -1,0 +1,14 @@
+# OLE vsdx 嵌入测试：diagram 元素 src=.vsdx → renderer 跳过 → COM AddOLEObject（双击可编辑）
+meta:
+  title: OLE vsdx 嵌入测试
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  prim: {solid: "#2D6CDF"}
+elements:
+  - id: arch
+    type: diagram
+    src: "D:/Downloads/Zen Browser/file/小行星支持系统/5.3_灾害评估与救援支持系统工艺技术方案_image/图5-3-10_救援方案制定支持分系统组成图.vsdx"
+    rect: [1.0, 1.0, 8.0, 4.5]
+    caption: 救援方案制定支持分系统组成图

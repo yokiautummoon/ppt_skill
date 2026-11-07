@@ -1,0 +1,26 @@
+# examples/layouts/kpis.yaml — 内容页结构生成样板 · kpis（指标卡行）
+# 变体：cards（实色卡，首项）/ row（扁平无描边）/ rings（数值嵌圆标）。
+meta:
+  title: 内容版式 · kpis
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme: nsfc_blue
+  slides:
+    - title: kpis cards
+      page_intent: kpis
+      kpis:
+        title: 关键指标（cards）
+        items:
+          - {value: 100%, label: 物证通过率}
+          - {value: 184, label: 突变用例}
+          - {value: 10, label: 页型意图}
+    - title: kpis rings
+      page_intent: kpis
+      kpis:
+        title: 关键指标（rings）
+        variant: rings
+        items:
+          - {value: 33, label: 回归样例}
+          - {value: 47, label: 排版断言}
+          - {value: 110, label: 能力档案}

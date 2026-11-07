@@ -1,0 +1,6 @@
+python-pptx>=1.0.2
+PyYAML>=6.0
+lxml>=5.0
+fontTools>=4.51
+skia-pathops>=0.7.4
+pywin32>=306; sys_platform == "win32"

@@ -1,0 +1,34 @@
+# 具名锚点示例（scansci 内化块 1 回归）：glue from_anchor/to_anchor 精确连接位
+meta:
+  title: 具名锚点示例
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  p: '#1F2A44'
+  q: '#4C9BE8'
+elements:
+  - id: pump
+    type: shape
+    kind: rounded_rect
+    rect: [1.0, 3.0, 2.0, 1.0]
+    style: {fill: p, border: q}
+    text: 泵
+    anchors:
+      outlet: [1.0, 0.62]     # 右缘偏上——泵的出口连接位
+  - id: reactor
+    type: shape
+    kind: rounded_rect
+    rect: [5.0, 3.0, 2.0, 1.0]
+    style: {fill: p, border: q}
+    text: 反应器
+    anchors:
+      inlet: [0.0, 0.35]      # 左缘偏上——反应器进口
+      outlet: [1.0, 0.8]      # 右缘偏下（备用连接位）
+relations:
+  glue:
+    - from: pump
+      to: reactor
+      from_anchor: outlet
+      to_anchor: inlet
+      label: 进料

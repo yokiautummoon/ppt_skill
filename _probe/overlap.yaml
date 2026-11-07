@@ -1,0 +1,12 @@
+meta:
+  title: ov
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+elements:
+  - id: t
+    type: text
+    rect: [0.5, 0.5, 10, 1]
+    text: "hl"
+  - id: b
+    type: shape
+    rect: [0.5, 0.5, 2, 2]

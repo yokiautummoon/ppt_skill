@@ -1,0 +1,35 @@
+# ratio.yaml — 相对坐标层（rect_kind: ratio）示例：自适应用版心内百分比定位。
+# 版式随 meta.slide / margin 变化 → rect 相对内容区自动重排（自适应布局关节节点）。
+# area: content（缺省）相对页内容区（slide−margin）；area: slide 相对整页（出血）。
+meta:
+  title: 相对坐标层
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  slides:
+    - title: 比例坐标
+      elements:
+        - id: band
+          type: shape
+          rect_kind: ratio
+          rect: {x: 0.0, y: 0.12, w: 1.0, h: 0.035}
+          kind: rect
+          style: {fill: '#2D6CDF', border: none}
+        - id: fig
+          type: svg
+          rect_kind: ratio
+          rect: {x: 0.12, y: 0.22, w: 0.45, h: 0.62}
+          src: ../../assets/figures/radar.svg
+        - id: title
+          type: text
+          rect_kind: ratio
+          rect: {x: 0.62, y: 0.24, w: 0.32, h: 0.12}
+          text: 相对坐标自适应
+          text_style: {fs: 28, bold: true, align: left}
+        - id: body
+          type: text
+          rect_kind: ratio
+          rect: {x: 0.62, y: 0.40, w: 0.30, h: 0.42}
+          text: 'rect_kind: ratio —— rect 是内容区的 0–1 分数，版式随 slide/margin 变化
+                自动重排。这是 agent 控制自适应布局的关节节点：给意图，引擎定几何。'
+          text_style: {fs: 16, align: left}

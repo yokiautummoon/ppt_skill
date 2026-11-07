@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+# 示例 4：原生表格积木（type: table）—— 数据矩阵声明 → 原生 a:tbl
+#
+# - data 为 rows×cols 字符串矩阵（行/列数由 data 推导，cols 不必声明）
+# - col_widths 可选（英寸，和必须 == rect 宽）；缺省列宽均分 rect.w
+# - header 为样式 dict（fs/color/bold/fill）作用于首行；缺省深底白字
+# - body 样式作用于其余行；borders: true/色值/none 控制单元格边框
+# - 单元格文本溢出由 verify T 家族机器证明（列宽/行高 − 2×cell_pad）
+meta:
+  title: 经营数据一览
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+  framework:
+    background: {fill: "#FFFFFF"}
+    footer: {text: "数据截至 2026 年 · {page}", align: right, fs: 9, color: ink}
+palette:
+  ink: "#1F2A44"
+  blue: "#2D6CDF"
+  soft: "#EEF3FB"
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 12.0, 0.9]
+    text: 经营数据一览（表格积木）
+    text_style: {fs: 28, color: ink, bold: true, align: left}
+  - id: tbl_main
+    type: table
+    rect: [0.8, 1.8, 11.73, 4.9]
+    data:
+      - ["指标", "Q1", "Q2", "Q3", "Q4"]
+      - ["营收(万元)", 1280, 1520, 1760, 2090]
+      - ["同比增速", "8.2%", "18.8%", "15.8%", "18.8%"]
+      - ["毛利率", "42.1%", "43.0%", "41.8%", "44.5%"]
+      - ["客户数(万)", 62, 68, 76, 85]
+      - ["客单价(元)", 206, 224, 232, 246]
+    header: {fs: 13, fill: ink, color: "#FFFFFF", bold: true}
+    body: {fs: 12, fill: soft}

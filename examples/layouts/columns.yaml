@@ -1,0 +1,31 @@
+# examples/layouts/columns.yaml — 内容页结构生成样板 · columns（分栏正文）
+# 变体：even（平铺分栏，首项）/ arrow（栏间箭头）。
+meta:
+  title: 内容版式 · columns
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme: nsfc_blue
+  slides:
+    - title: columns even
+      page_intent: columns
+      columns:
+        title: 两栏对照陈述
+        cols:
+          - head: 现状
+            items: [手工排版耗时长, 版式易重复, 数值散落难追溯]
+          - head: 目标
+            items: [引擎结构生成, 变体族防刻板, 数值接口单一事实源]
+    - title: columns arrow
+      page_intent: columns
+      columns:
+        title: 三步递进（栏间箭头）
+        variant: arrow
+        bottom: 底条：由内容结构自动解出的版式，无需逐元素坐标。
+        cols:
+          - head: 第一步
+            items: [结构化输入]
+          - head: 第二步
+            items: [引擎展开]
+          - head: 第三步
+            items: [物证背书]

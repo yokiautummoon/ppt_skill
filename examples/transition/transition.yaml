@@ -1,0 +1,73 @@
+# transition.yaml — 页面切换积木示例（meta.slides 多页 + 全局默认/页级覆盖）
+# 切换是页间行为（单页模式声明 meta.transition → 编译错 meta.slides 才可用）：
+#   - meta.transition 为全局默认；slides[i].transition 页级覆盖（页显式声明才覆盖，
+#     缺省不写 = 继承全局；effect: none = 显式关闭该页切换）；
+#   - effect ∈ fade|push|wipe|cut|none；spd ∈ slow|med|fast（OOXML 定性档，
+#     无秒级精度——渲染/物证同规）；push/wipe 默认从左（dir="l"）；
+#   - 纯渲染 XML 注入 p:transition（零 COM），物证核对元素与 spd。
+meta:
+  title: 页面切换示例
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  params:
+    style: {body_fs_min: 14}   # 功能演示降准（正文为切换功能示例素材）
+  transition: {effect: fade, spd: slow}     # 全局默认：淡入（慢）
+  framework:
+    footer:
+      text: '第 {page} 页 · 切换演示'
+      align: right
+      fs: 9
+  slides:
+    - title: 淡入（继承全局）
+      # 本页不写 transition → 继承 meta.transition（fade, slow）
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 2.2, 11.7, 1.2]
+          text: 页 1 · 淡入（fade, slow）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: sub
+          type: text
+          rect: [0.8, 3.6, 11.7, 0.7]
+          text: 未声明页级 transition，继承全局默认
+          text_style: {fs: 14, align: left}
+    - title: 推入（页级覆盖）
+      transition: {effect: push}            # 覆盖全局；spd 缺省回落 med
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 2.2, 11.7, 1.2]
+          text: 页 2 · 从左推入（push, med）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: sub
+          type: text
+          rect: [0.8, 3.6, 11.7, 0.7]
+          text: 页级覆盖全局默认，spd 缺省 = med
+          text_style: {fs: 14, align: left}
+    - title: 无切换
+      transition: {effect: none}            # 显式关闭：XML 不注入 p:transition
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 2.2, 11.7, 1.2]
+          text: 页 3 · 无切换（none）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: sub
+          type: text
+          rect: [0.8, 3.6, 11.7, 0.7]
+          text: 'effect: none 关闭切换（常用于章节页）'
+          text_style: {fs: 14, align: left}
+    - title: 擦除（覆盖 + spd）
+      transition: {effect: wipe, spd: fast}
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 2.2, 11.7, 1.2]
+          text: 页 4 · 从左擦除（wipe, fast）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: sub
+          type: text
+          rect: [0.8, 3.6, 11.7, 0.7]
+          text: 页级覆盖且显式指定 spd
+          text_style: {fs: 14, align: left}

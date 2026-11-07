@@ -1,0 +1,116 @@
+# 示例：多页序列（meta.slides）—— 演示/课件/汇报的长页制作能力
+#
+# 多页模式：meta.slides 每个元素一页（title 可选）；顶层 elements/relations
+# 须移入各页（避免"页面元素归属歧义"，编译期拦截）。
+#   - 全局 meta.margin / meta.framework 打底，每页可选 margin/framework 覆盖
+#     （dict 合并：页级键覆盖全局）。
+#   - palette 全局共享；元素 id 唯一作用域 = 页内；遮挡/安全区校验按页隔离。
+#   - footer 的 {page} 占位符按实际页号逐页展开（第 1 页 = 1，第 2 页 = 2…）。
+#
+# 本示例 3 页，覆盖多页演示的典型图面积木组合：
+#   页 1 封面（text + 装饰 shape）、页 2 议程（原生表格）、
+#   页 3 数据页（原生图表 + 指标卡片 stack）。
+meta:
+  title: 2026 上半年经营分析（多页演示）
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  # 全局框架层：三页共用背景/页眉/页脚（页脚 {page} 逐页编号）
+  framework:
+    background:
+      fill: {grad: ["#FFFFFF", "#EAF1F9"]}
+    header: {text: "2026 · 经营分析会", align: right, fs: 10, color: muted}
+    footer: {text: "机密 · 第 {page} 页 / 共 3 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：封面 ============
+    - title: 封面
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 2.4, 11.7, 1.5]
+          text: "2026 上半年经营分析报告"
+          text_style: {fs: 44, color: deep, bold: true, align: left}
+        - id: t_sub
+          type: text
+          rect: [0.8, 4.0, 9.0, 0.8]
+          text: "聚焦增长 · 控制风险 · 夯实底座"
+          text_style: {fs: 20, color: acc, align: left}
+        - id: t_meta
+          type: text
+          rect: [0.8, 4.9, 8.0, 0.5]
+          text: "财务部 · 2026-09-09"
+          text_style: {fs: 12, color: muted, align: left}
+        - id: deco
+          type: shape
+          kind: rect
+          rect: [0.8, 1.95, 3.4, 0.14]
+          style: {fill: acc}
+
+    # ============ 页 2：议程（原生表格积木） ============
+    - title: 议程
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 8.0, 0.8]
+          text: "汇报议程"
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: t_agenda
+          type: table
+          rect: [0.8, 1.9, 11.73, 4.6]
+          data:
+            - ["序号", "议题", "时长", "责任人"]
+            - ["01", "上半年经营回顾", "10 min", "财务部"]
+            - ["02", "预算执行与偏差分析", "10 min", "预算组"]
+            - ["03", "现金流与融资安排", "10 min", "资金部"]
+            - ["04", "风险事项与应对措施", "10 min", "风控组"]
+            - ["05", "下半年工作部署", "15 min", "管理层"]
+          header: {fs: 13, fill: deep, color: "#FFFFFF", bold: true}
+          body: {fs: 12}
+          borders: true
+
+    # ============ 页 3：关键指标（原生图表 + 指标卡片） ============
+    - title: 关键指标
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 8.0, 0.8]
+          text: "关键经营指标"
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: c_rev
+          type: chart
+          rect: [0.8, 1.8, 7.4, 5.0]
+          chart_type: column_clustered
+          categories: [Q1, Q2, Q3, Q4]
+          series:
+            - {name: 华东, values: [12.4, 15.1, 13.8, 18.2]}
+            - {name: 华北, values: [9.8, 11.2, 10.6, 13.4]}
+            - {name: 华南, values: [7.5, 8.9, 10.1, 12.7]}
+          style: {legend: right, data_labels: true, colors: [acc, accent2, accent3]}
+        - id: kpi
+          type: stack
+          orientation: vertical
+          align: center
+          gap: 0.25
+          rect: [8.6, 1.8, 4.13, 5.0]
+          children:
+            - {id: k1, type: shape, kind: rounded_rect, width: 4.13, height: 0.95,
+               text: "营收 59.5 亿 ↑12%",
+               text_style: {fs: 15, bold: true, color: deep}}
+            - {id: k2, type: shape, kind: rounded_rect, width: 4.13, height: 0.95,
+               text: "毛利率 28.6%",
+               text_style: {fs: 15, bold: true, color: deep}}
+            - {id: k3, type: shape, kind: rounded_rect, width: 4.13, height: 0.95,
+               text: "经营现金流 8.2 亿",
+               text_style: {fs: 15, bold: true, color: deep}}
+        - id: t_note
+          type: text
+          rect: [8.6, 6.55, 4.13, 0.3]
+          text: "数据口径：合并报表（未审计）"
+          text_style: {fs: 10, color: muted, align: left}
+
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  accent2: "#E0A800"
+  accent3: "#1FA88C"
+  muted: "#8899AA"

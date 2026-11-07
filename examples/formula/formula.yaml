@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+# 示例 3：公式积木（type: formula）—— 数学公式支持验证
+#
+# 两条路径：
+#   1. 子集内表达式 → 确定性 OMML 直接注入（零 Office，PowerPoint 原生识别）：
+#      分式 /、上标 ^、下标 _、根式 √、希腊字符、单字符变量（math italic）
+#   2. 子集外表达式 → 渲染为占位文本；--com 时 com_layer 用 Word 批量引擎兜底
+#      （一次 Word 进程吞 N 表达式 → docx 解包 → OMML 注入）。
+#      求和请写 Unicode 字符式 `∑_(i=1)^n x_i`（实测才转真 nary 大运算符）；
+#      LaTeX 花括号式 `\sum_{i=1}^{n}` 实测不转 nary，不要用。
+#
+# 例：f_sum/f_prod 放子集外，但命中离线模板库（∑/∏ 系）——无 --com 也
+#     直接注入真 nary（zero Word）。模板库外的 ∫ 等只走占位/--com 兜底。
+meta:
+  title: 公式积木
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  ink: "#1F2A44"
+  blue: "#2D6CDF"
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 6.0, 0.7]
+    text: 公式积木测试
+    text_style: {fs: 24, color: ink, align: left}
+  # ---- 左列：子集内，直接注入 ----
+  - id: f_frac
+    type: formula
+    rect: [0.6, 1.6, 5.8, 1.0]
+    expr: "a/b + x^2 + c_i"
+    text_style: {fs: 18, color: ink}
+  - id: f_rad
+    type: formula
+    rect: [0.6, 2.9, 5.8, 1.0]
+    expr: "√(a+b)"
+    text_style: {fs: 16}
+  - id: f_greek
+    type: formula
+    rect: [0.6, 4.2, 5.8, 1.0]
+    expr: "λ_n = α/β"
+    text_style: {fs: 16}
+  # ---- 右列：子集内 + 子集外（com 兜底） ----
+  - id: f_ein
+    type: formula
+    rect: [7.0, 1.6, 5.7, 1.0]
+    expr: "E = mc^2"
+    text_style: {fs: 16}
+  - id: f_sum
+    type: formula
+    rect: [7.0, 2.9, 5.7, 1.0]
+    expr: "∑_(i=1)^n x_i"
+    text_style: {fs: 18, color: blue}
+  - id: f_prod
+    type: formula
+    rect: [7.0, 4.2, 5.7, 1.0]
+    expr: "∏_(i=1)^n a_i"
+    text_style: {fs: 18, color: ink}

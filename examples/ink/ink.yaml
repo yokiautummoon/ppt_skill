@@ -1,0 +1,69 @@
+# ink.yaml — C3 书法矢量字（brush）+ Morph 平滑切换示例
+# ① 字形 → custGeom 原生矢量形状（换机不丢字形）——实色 / 渐变 / 图片填充三态；
+# ② 多页同名对象（ink_* 跨页同名）+ effect=morph → 逐对象补间（dur 仅 morph）。
+meta:
+  title: 书法矢量字与平滑切换
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  slides:
+    - title: 书法矢量字
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.0, 0.8]
+          text: 书法矢量字 · 三态填充
+          text_style: {fs: 30, bold: true, align: left}
+        # 实色楷书
+        - id: ink_solid
+          type: brush
+          rect: [0.7, 1.7, 3.6, 3.6]
+          text: 水墨
+          font: kai
+          style: {fill: '#1F2A44'}
+        # 渐变楷书
+        - id: ink_grad
+          type: brush
+          rect: [4.8, 1.7, 3.6, 3.6]
+          text: 山河
+          font: kai
+          style: {grad: ['#2D6CDF', '#7AA2F7']}
+        # 图片填充楷书（水墨纹理透出字形）
+        - id: ink_img
+          type: brush
+          rect: [8.9, 1.7, 3.6, 3.6]
+          text: 云海
+          font: kai
+          style: {image: assets/ink.png}
+        - id: cap
+          type: text
+          rect: [0.6, 5.7, 11.9, 0.8]
+          text: 左·实色 ／ 中·渐变 ／ 右·图片填充 —— 字形矢量化，换机不丢
+          text_style: {fs: 16, align: center}
+    - title: 平滑切换
+      transition: {effect: morph, dur: 900}
+      elements:
+        # 跨页同名对象：morph 自动补间（位置/尺寸变形）
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.0, 0.8]
+          text: 平滑切换 · Morph
+          text_style: {fs: 30, bold: true, align: left}
+        - id: ink_solid
+          type: brush
+          rect: [7.6, 3.1, 2.6, 2.6]
+          text: 水墨
+          font: kai
+          style: {fill: '#1F2A44'}
+        - id: ink_grad
+          type: brush
+          rect: [4.4, 3.1, 2.6, 2.6]
+          text: 山河
+          font: kai
+          style: {grad: ['#2D6CDF', '#7AA2F7']}
+        - id: ink_img
+          type: brush
+          rect: [1.2, 3.1, 2.6, 2.6]
+          text: 云海
+          font: kai
+          style: {image: assets/ink.png}

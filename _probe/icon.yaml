@@ -1,0 +1,31 @@
+meta:
+  title: 矢量图标探针
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.62, 11.0, 0.7]
+    text: 矢量图标（Lucide → custGeom）
+    text_style: {fs: 30, bold: true, align: left}
+  - id: ic_water
+    type: icon
+    rect: [0.9, 2.0, 1.6, 1.6]
+    icon: 水滴
+    style: {color: '#2D6CDF', weight: 1.6}
+  - id: ic_gear
+    type: icon
+    rect: [3.0, 2.0, 1.6, 1.6]
+    icon: gear
+    style: {color: '#1F2A44'}
+  - id: ic_scatter
+    type: icon
+    rect: [5.1, 2.0, 1.6, 1.6]
+    icon: chart-scatter
+    style: {color: '#C00000', weight: 2.0}
+  - id: ic_science
+    type: icon
+    rect: [7.2, 2.0, 1.6, 1.6]
+    icon: 科学
+    style: {color: '#2E9E6B'}

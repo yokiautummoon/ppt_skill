@@ -1,0 +1,27 @@
+# 母版版式「打底」示例：meta.template mode=seed
+# 渲染器以模板为基底 add_slide(选中版式)；ph 元素（仅 text）把文本填入模板
+# 占位符（落点/样式/几何留模板，rect 只作文本测量输入）；模板层豁免校验。
+meta:
+  title: 模板打底示例（seed）
+  style_guide: deck
+  template:
+    src: brand.pptx
+    mode: seed
+    layout: Title Slide          # 按版式名（或索引）；缺省自动选含 title 的版式
+  framework:
+    footer: {text: "机密 · 第 {page} 页", align: right, fs: 9, color: deep}
+palette:
+  deep: "#1F2A44"
+elements:
+  - id: title
+    type: text
+    ph: 0                        # Title Slide 的 ctrTitle 占位符（idx 0）
+    rect: [0.6, 0.4, 8.8, 1.4]   # 文本测量输入（落点 = 模板占位符）
+    text: 品牌模板打底页
+    text_style: {color: deep}
+  - id: subtitle
+    type: text
+    ph: 1                        # subTitle 占位符（idx 1）
+    rect: [0.6, 2.2, 8.8, 0.9]
+    text: 标题 / 副标题填入模板占位符，版式与品牌由模板提供
+    text_style: {fs: 16, color: deep, align: left}

@@ -1,0 +1,29 @@
+
+meta:
+  title: ladder
+  style_guide: ladder
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, r: 0.5, t: 0.5, b: 0.5}
+palette:
+  deep: "#1F2A44"
+  mid: "#4A6FA5"
+  soft: "#A8C4E0"
+  paper: "#FFFFFF"
+  ink: "#1F2A44"
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 6.0, 0.8]
+    text: "递进阶梯"
+    text_style: {fs: 28, color: ink, align: left}
+  - id: stack1
+    type: stack
+    rect: [3.0, 1.7, 7.3, 5.3]
+    orientation: vertical
+    align: center
+    v_align: center
+    gap: 0.18
+    children:
+      - {id: s1, type: shape, kind: rounded_rect, width: 6.2, height: 0.95, style: {fill: soft, border: ink}}
+      - {id: s2, type: shape, kind: rounded_rect, width: 4.6, height: 0.95, style: {fill: mid, border: ink}}
+      - {id: s3, type: shape, kind: rounded_rect, width: 3.0, height: 0.95, style: {fill: deep, border: ink}}

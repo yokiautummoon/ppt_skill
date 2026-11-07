@@ -1,0 +1,18 @@
+# group COM 组合测试：stack 容器 + group:true → 成员 Group() 成 Office 组对象
+meta:
+  title: group COM 组合测试
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  prim: {solid: "#2D6CDF"}
+elements:
+  - id: grp
+    type: stack
+    orientation: horizontal
+    rect: [1.0, 3.0, 4.6, 1.0]
+    gap: 0.3
+    group: true
+    children:
+      - {id: a, type: shape, kind: rounded_rect, width: 2.0, height: 1.0, style: {fill: prim}, text_style: {fs: 12}, text: A}
+      - {id: b, type: shape, kind: rounded_rect, width: 2.0, height: 1.0, style: {fill: prim}, text_style: {fs: 12}, text: B}

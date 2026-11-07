@@ -1,0 +1,56 @@
+# examples/pageintent/cover.yaml — 页型意图（page_intent）示例：cover 破格封面
+#
+# grilling 收敛：agent 只选页型意图 token，布局由引擎确定性展开（防刻板且保
+# harness——稳 ≠ 千篇一律，多样来自审定原型，不来自自由创作）。
+#   page_intent: cover  → 引擎展开破格封面版式族：非几何居中大标题 +
+#     不对称 deco 强调条 + 右下角落款锚点（rect 全由 ir_builder 解出，还原
+#     生能力，verify 按破格度断言背书）。
+#   cover 字段：title（必填）/ subtitle / meta / accent（palette token 可选）。
+#   --com 无要求（引擎展开 = 普通元素，渲染照常，零 Office 全链可证）。
+#
+# 页型分类谱系（axiom）见 references/page-intents.md；本示例演示其中 cover。
+meta:
+  title: 页型意图 · cover 破格封面（审定菜单选择）
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  # 全局框架层：封面页无页脚（多页模式：封面 footer 清空 = 页码不占页）
+  framework:
+    header: {text: "2026 · 经营分析会", align: right, fs: 10, color: muted}
+    footer: {text: "机密 · 第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：封面（引擎展开，agent 零坐标） ============
+    - title: 封面
+      page_intent: cover
+      framework: {footer: {text: ""}}     # 封面不计页码
+      cover:
+        title: 2026 上半年经营分析报告
+        subtitle: 聚焦增长 · 控制风险 · 夯实底座
+        meta: 财务部 · 2026-09-09
+        accent: acc
+
+    # ============ 页 2：议程（普通内容页对照） ============
+    - title: 议程
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 8.0, 0.8]
+          text: 汇报议程
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: t_agenda
+          type: table
+          rect: [0.8, 1.9, 11.73, 4.6]
+          data:
+            - ["序号", "议题", "时长", "责任人"]
+            - ["01", "上半年经营回顾", "10 min", "财务部"]
+            - ["02", "预算执行与偏差分析", "10 min", "预算组"]
+            - ["03", "现金流与融资安排", "10 min", "资金部"]
+            - ["04", "下半年工作部署", "15 min", "管理层"]
+          header: {fs: 13, fill: deep, color: "#FFFFFF", bold: true}
+          body: {fs: 12}
+          borders: true
+
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  muted: "#8899AA"

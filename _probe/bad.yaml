@@ -1,0 +1,8 @@
+meta:
+  title: bad
+  style_guide: deck
+elements:
+  - id: a
+    type: shape
+    rect: [0.5, 0.5, 2, 1]
+    bogus_key: 1

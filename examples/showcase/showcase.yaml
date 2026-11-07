@@ -1,0 +1,176 @@
+# examples/showcase/showcase.yaml — 设计编排示范（SKILL.md Step 2 的活样板）
+#
+# 一页一个骨架，六页无重复——这就是「内化 A/B/C 档能力」后应有的画面节奏，
+# 对照旧版纯文本/纯 shape 页看差异：
+#   页 1 page_intent: cover  破格封面（引擎展开，agent 零坐标）
+#   页 2 page_intent: section 破格节标题（超大节序号 + 引导线）
+#   页 3 三卡图标行（type: icon + 卡片 + 要点，[[强调]]）
+#   页 4 图表 + 结论条（chart + KPI 卡片栈）
+#   页 5 page_intent: versus  双栏分色对照（中缝 VS 圆标）
+#   页 6 page_intent: route   阶段链横向铺满（等距 hexagon + 箭头）
+#
+# 设计体检（[design]）：视觉主体 6/6 页、图标 3、强调 4、版式骨架零重复。
+# 用法：win_py -X utf8 scripts/build_ppt.py examples/showcase/showcase.yaml --out out_showcase
+meta:
+  title: 设计编排示范
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  brief: >
+    演示 ppt-builder 的版式节奏：封面/节页用页型意图，内容页用不同骨架
+    （图标卡行/图表+结论/对照/路线），关键数字用 [[强调]]。数据为示例占位。
+  transition: {effect: fade}
+  framework:
+    header: {text: "ppt-builder · 设计编排", align: right, fs: 10, color: muted}
+    footer: {text: "第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：封面（page_intent: cover） ============
+    - title: 封面
+      page_intent: cover
+      framework: {footer: {text: ""}}          # 封面不计页码
+      cover:
+        title: 让每一页都有设计意图
+        subtitle: 声明骨架 · 机器校验 · 物证闭环
+        meta: ppt-builder · 2026
+        accent: acc
+
+    # ============ 页 2：节标题（page_intent: section） ============
+    - title: 方法
+      page_intent: section
+      framework: {footer: {text: ""}}          # 节页不计页码
+      section:
+        num: "01"
+        title: 从排版到设计编排
+        accent: acc
+
+    # ============ 页 3：三卡图标行（icon + 卡片 + 要点） ============
+    - title: 三个支点
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.9, 0.7]
+          text: 内容页的三个支点
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: ic_1
+          type: icon
+          rect: [1.95, 1.7, 1.0, 1.0]
+          icon: 灯泡
+          style: {color: '#2D6CDF', weight: 1.8}
+        - id: card_1
+          type: shape
+          rect: [0.6, 2.9, 3.7, 1.5]
+          kind: rounded_rect
+          text: 聚焦关键
+          style: {fill: '#EAF1FC'}
+          text_style: {fs: 20, bold: true, color: deep, align: center}
+        - id: body_1
+          type: text
+          rect: [0.6, 4.6, 3.7, 1.2]
+          text: 每页只讲 [[一件事]]，标题说结论，不堆小标题
+          text_style: {fs: 16, color: deep, align: center}
+        - id: ic_2
+          type: icon
+          rect: [6.15, 1.7, 1.0, 1.0]
+          icon: 图表
+          style: {color: '#E0A800', weight: 1.8}
+        - id: card_2
+          type: shape
+          rect: [4.8, 2.9, 3.7, 1.5]
+          kind: rounded_rect
+          text: 视觉主体
+          style: {fill: '#FDF4DA'}
+          text_style: {fs: 20, bold: true, color: deep, align: center}
+        - id: body_2
+          type: text
+          rect: [4.8, 4.6, 3.7, 1.2]
+          text: 图表/图标/图示至少一个，纯文字页不连续出现
+          text_style: {fs: 16, color: deep, align: center}
+        - id: ic_3
+          type: icon
+          rect: [10.35, 1.7, 1.0, 1.0]
+          icon: 目标
+          style: {color: '#1FA88C', weight: 1.8}
+        - id: card_3
+          type: shape
+          rect: [9.0, 2.9, 3.7, 1.5]
+          kind: rounded_rect
+          text: 骨架轮换
+          style: {fill: '#E4F5EF'}
+          text_style: {fs: 20, bold: true, color: deep, align: center}
+        - id: body_3
+          type: text
+          rect: [9.0, 4.6, 3.7, 1.2]
+          text: 相邻页不得同骨架，同骨架全篇上 [[2 页]]
+          text_style: {fs: 16, color: deep, align: center}
+
+    # ============ 页 4：图表 + 结论条（chart + KPI 栈） ============
+    - title: 增长来自哪里
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.9, 0.7]
+          text: 增长来自哪里
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: c_rev
+          type: chart
+          rect: [0.6, 1.75, 7.6, 4.9]
+          chart_type: column_clustered
+          categories: [Q1, Q2, Q3, Q4]
+          series:
+            - {name: 华东, values: [12.4, 15.1, 16.8, 18.2]}
+            - {name: 海外, values: [4.5, 6.1, 8.9, 12.7]}
+          style: {legend: right, data_labels: true, colors: [acc, accent2]}
+        - id: kpi
+          type: stack
+          orientation: vertical
+          align: center
+          gap: 0.35
+          rect: [8.5, 1.75, 4.23, 4.9]
+          children:
+            - {id: k1, type: shape, kind: rounded_rect, width: 4.23, height: 1.3,
+               text: "营收 59.5 亿 · 同比 [[+12%]]",
+               style: {fill: '#EAF1FC'},
+               text_style: {fs: 16, bold: true, color: deep}}
+            - {id: k2, type: shape, kind: rounded_rect, width: 4.23, height: 1.3,
+               text: "毛利率 34.2% · 环比 +1.8pt",
+               style: {fill: '#FDF4DA'},
+               text_style: {fs: 16, bold: true, color: deep}}
+            - {id: k3, type: shape, kind: rounded_rect, width: 4.23, height: 1.3,
+               text: "海外占比 [[28%]] · 三年新高",
+               style: {fill: '#E4F5EF'},
+               text_style: {fs: 16, bold: true, color: deep}}
+
+    # ============ 页 5：双栏对照（page_intent: versus） ============
+    - title: 方案对照
+      page_intent: versus
+      versus:
+        left_title: 过去：模板复制
+        right_title: 现在：声明式编排
+        left_items:
+          - 手工摆坐标，改文案即错位
+          - 版式千篇一律，看不出重点
+          - 质量靠肉眼看，无法复现
+        right_items:
+          - 声明骨架，几何由求解器落
+          - 图标/图表/强调按规则登场
+          - 断言 + 物证，改 SPEC 重跑
+        vs: VS
+        accent: acc
+
+    # ============ 页 6：阶段链（page_intent: route） ============
+    - title: 落地路线
+      page_intent: route
+      route:
+        title: 四步跑通设计闭环
+        stages:
+          - 排页序骨架
+          - 声明积木
+          - 编译与校验
+          - 设计体检复核
+        accent: acc
+
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  accent2: "#E0A800"
+  muted: "#8899AA"

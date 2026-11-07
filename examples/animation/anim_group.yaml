@@ -1,0 +1,88 @@
+# 动画编排组演示：声明式时间轴（succession 串行 / aligned 对齐 / group 联合）
+meta:
+  title: 动画编排
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  params:
+    style: {body_fs_min: 14}
+palette:
+  deep: "#1F2A44"
+  accent: "#2D6CDF"
+  soft: "#EAF1FB"
+  white: "#FFFFFF"
+  warn: "#E0A800"
+elements:
+  - id: title
+    type: text
+    rect: [0.9, 0.35, 11.5, 0.9]
+    text: "动画编排组 · succession / aligned / group"
+    text_style: {fs: 36, color: deep}
+    animation: {effect: 进入动画_自上浮入_改}
+  - id: sub
+    type: text
+    rect: [0.9, 1.25, 11.5, 0.5]
+    text: "组根 on_click 逐段触发：标题 → 三卡对齐 → 徽章组联合 → 退出卡片"
+    text_style: {fs: 16, color: accent}
+    animation: {effect: 进入动画_快速淡入}
+  - id: card1
+    type: shape
+    kind: rounded_rect
+    rect: [0.9, 2.0, 3.4, 3.4]
+    text: "快速淡入"
+    style: {fill: accent, border: none}
+    text_style: {color: white, fs: 18}
+    animation: {effect: 进入动画_快速淡入}
+  - id: card2
+    type: shape
+    kind: rounded_rect
+    rect: [4.7, 2.0, 3.4, 3.4]
+    text: "安逸Q弹"
+    style: {fill: deep, border: none}
+    text_style: {color: white, fs: 18}
+    animation: {effect: 进入动画_安逸Q弹}
+  - id: card3
+    type: shape
+    kind: rounded_rect
+    rect: [8.5, 2.0, 3.4, 3.4]
+    text: "自下浮入·改"
+    style: {fill: soft, border: accent}
+    text_style: {fs: 18}
+    animation: {effect: 进入动画_自下浮入_改}
+  - id: badge
+    type: shape
+    kind: oval
+    rect: [0.9, 5.55, 3.4, 0.8]
+    text: "持续 · 呼吸效果"
+    style: {fill: warn, border: none}
+    text_style: {color: white, fs: 14}
+    animation: {effect: 持续动画_呼吸效果}
+  - id: spin
+    type: shape
+    kind: oval
+    rect: [4.7, 5.55, 3.4, 0.8]
+    text: "持续 · 陀螺旋（顺）"
+    style: {fill: accent, border: none}
+    text_style: {color: white, fs: 14}
+    animation: {effect: 持续动画_无限陀螺旋_顺}
+  - id: exitcard
+    type: shape
+    kind: rounded_rect
+    rect: [8.5, 5.55, 3.9, 0.8]
+    text: "退出动画 · 自上浮出（收尾）"
+    style: {fill: deep, border: none}
+    text_style: {color: white, fs: 14}
+    animation: {effect: 退出动画_自上浮出}
+# 页级动画组：组内成员时序全由引擎展开（成员须有 animation 且不带 trigger/delay）
+anim:
+  mode: succession
+  trigger: on_click
+  start: 0.2
+  gap: 0.35
+  items:
+    - id: title
+    - mode: aligned          # 三卡同时进入（与标题接续）
+      gap: 0.1
+      items: [card1, card2, card3, sub]
+    - mode: group            # 徽章组联合（同块对外锚定块 end）
+      items: [badge, spin]
+    - id: exitcard

@@ -1,0 +1,180 @@
+# -*- coding: utf-8 -*-
+# 示例 4b：原生图表样式全键（Power BI 式数字大屏观感）
+#
+# 逐页压测 params.chart 样式卡 + 元素级 style.* 覆盖：预设 chart_style / 全局字族 /
+# 图例（位·字号·字色）/ 图表区·绘图区透明（母版透出）/ 数据标签（位·形·色·格式）/
+# 坐标轴（刻度·网格色·量程·数字格式）/ 柱间距·重叠 / 折线宽·平滑·点标 / 圆环孔洞。
+# 全部零 COM：python-pptx add_chart 生成原生 chartSpace + 随附 workbook，双击可编辑。
+#
+# chart_type 族别（17 种）：
+#   柱/条 column_clustered|column_stacked|column_stacked_100|bar_clustered|
+#        bar_stacked|bar_stacked_100
+#   折线 line|line_stacked|line_markers|line_markers_stacked
+#   面积 area|area_stacked|area_stacked_100
+#   饼环 pie|pie_exploded|doughnut|doughnut_exploded
+meta:
+  title: 原生图表样式全键
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, r: 0.5, t: 0.5, b: 0.5}
+  framework:
+    header: {text: "原生图表样式全键", align: right, fs: 10, color: deep}
+    footer: {text: "第 {page} 页", align: right, fs: 9, color: deep}
+  slides:
+    # ---- 页 1：柱状（标签/间距/量程/网格/透明底/预设字族）----
+    - title: 柱状样式
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.55, 12.0, 0.7]
+          text: "柱状：标签·间距·量程·网格·透明底"
+          text_style: {fs: 26, color: deep, bold: true, align: left}
+        - id: c_bar
+          type: chart
+          rect: [0.6, 1.35, 12.0, 5.35]
+          chart_type: column_clustered
+          categories: [1月, 2月, 3月, 4月, 5月, 6月]
+          series:
+            - {name: 太阳黑子, values: [32, 48, 61, 88, 120, 141]}
+            - {name: 耀斑, values: [12, 19, 25, 41, 58, 66]}
+          style:
+            legend: top
+            legend_fs: 11
+            data_labels: true
+            label_pos: outside_end
+            label_fs: 10
+            label_bold: true
+            colors: [acc, r]
+            gap_width: 40
+            overlap: -10
+            value_min: 0
+            value_max: 160
+            gridline_color: "#E4E9F2"
+            tick_fs: 10
+            chart_fill: none
+            plot_fill: none
+            font_family: "Microsoft YaHei"
+
+    # ---- 页 2：圆环（孔洞/百分比标签/底部图例/预设样式）----
+    - title: 圆环样式
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.55, 12.0, 0.7]
+          text: "圆环：孔洞·百分比标签·底部图例"
+          text_style: {fs: 26, color: deep, bold: true, align: left}
+        - id: c_donut
+          type: chart
+          rect: [3.6, 1.35, 6.0, 5.35]
+          chart_type: doughnut
+          categories: [GCR, SEP, 俘获带, 次级]
+          series:
+            - {name: 剂量占比, values: [34, 28, 25, 13]}
+          style:
+            legend: bottom
+            legend_fs: 11
+            data_labels: true
+            label_format: "0%"
+            label_fs: 11
+            donut_hole: 62
+            chart_style: 10
+            colors: [acc, g, y, p]
+
+    # ---- 页 3：折线（平滑/数据点标记/线宽/数值格式）----
+    - title: 折线样式
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.55, 12.0, 0.7]
+          text: "折线：平滑·数据点标记·线宽"
+          text_style: {fs: 26, color: deep, bold: true, align: left}
+        - id: c_line
+          type: chart
+          rect: [0.6, 1.35, 12.0, 5.35]
+          chart_type: line_markers
+          categories: [2000, 2004, 2008, 2012, 2016, 2020, 2024]
+          series:
+            - {name: 编目碎片, values: [9000, 9500, 12800, 16500, 17800, 21000, 27000]}
+          style:
+            legend: none
+            data_labels: true
+            label_fs: 10
+            colors: [acc]
+            line_width: 2.5
+            smooth: true
+            markers: true
+            gridlines: true
+            tick_fs: 10
+            value_format: "#,##0"
+
+    # ---- 页 4：百分比堆积柱（结构占比/无网格）----
+    - title: 百分比堆积
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.55, 12.0, 0.7]
+          text: "百分比堆积柱：结构占比"
+          text_style: {fs: 26, color: deep, bold: true, align: left}
+        - id: c_pct
+          type: chart
+          rect: [0.6, 1.35, 12.0, 5.35]
+          chart_type: column_stacked_100
+          categories: [1989, 2003, 2022, 2024]
+          series:
+            - {name: 电网, values: [70, 40, 10, 45]}
+            - {name: 卫星, values: [20, 45, 80, 30]}
+            - {name: 通信, values: [10, 15, 10, 25]}
+          style:
+            legend: bottom
+            data_labels: true
+            label_format: "0%"
+            label_fs: 10
+            colors: [acc, g, y]
+            gap_width: 80
+            gridlines: false
+
+    # ---- 页 5：横向条形 + 面积堆积（双图同页）----
+    - title: 条形与面积
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.55, 12.0, 0.7]
+          text: "横向条形 + 面积堆积"
+          text_style: {fs: 26, color: deep, bold: true, align: left}
+        - id: c_barh
+          type: chart
+          rect: [0.6, 1.35, 5.9, 5.35]
+          chart_type: bar_clustered
+          categories: [LEO, MEO, GEO, HEO]
+          series:
+            - {name: 年撞击概率(‰), values: [1.2, 0.3, 0.1, 0.05]}
+          style:
+            legend: none
+            data_labels: true
+            label_fs: 10
+            colors: [g]
+            gap_width: 45
+            tick_fs: 10
+        - id: c_area
+          type: chart
+          rect: [6.9, 1.35, 5.7, 5.35]
+          chart_type: area_stacked
+          categories: [低, 中, 高, 极高]
+          series:
+            - {name: 背景, values: [20, 35, 50, 60]}
+            - {name: 事件, values: [15, 30, 45, 70]}
+          style:
+            legend: top
+            colors: [acc, p]
+            gridline_color: "#EEF1F6"
+            tick_fs: 10
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  g: "#1FA88C"
+  r: "#B4536B"
+  y: "#E0A800"
+  p: "#7B5EA7"
+  soft: "#F2F5FA"
+  line: "#B8C4D8"
+  ink: "#33415C"

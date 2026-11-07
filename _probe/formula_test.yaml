@@ -1,0 +1,29 @@
+meta:
+  title: formula test
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, t: 0.5, r: 0.5, b: 0.5}
+palette:
+  ink: "#1F2A44"
+  main: {grad: ["#2D6CDF", "#1E88E5"]}
+elements:
+  - id: title
+    type: text
+    rect: [0.5, 0.5, 12.3, 0.6]
+    text: 公式注入测试
+    text_style: {fs: 24, align: left}
+  - id: f_frac
+    type: formula
+    rect: [0.5, 1.5, 5.0, 1.0]
+    expr: "a/b + x^2 + c_i"
+    text_style: {fs: 18, color: ink}
+  - id: f_rad
+    type: formula
+    rect: [0.5, 2.8, 5.0, 1.0]
+    expr: "√(a+b) + E=mc^2"
+    text_style: {fs: 16}
+  - id: f_fallback
+    type: formula
+    rect: [6.0, 1.5, 5.0, 1.0]
+    expr: '∑_(i=1)^n x_i'
+    text_style: {fs: 18}

@@ -1,0 +1,59 @@
+# notes.yaml — 备注页积木示例（meta.slides 多页 + 页级 notes）
+# 备注是页级文本（单页模式写 meta.notes，多页模式写 slides[i].notes）：
+#   - 渲染器写 notes_slide（演讲者视图可见，纯渲染零 COM）；
+#   - 物证按 slide rel → notesSlide part 核对文本（reports 有「备注页」项）；
+#   - 无备注的页不建 notes part（页 1 即如此）。
+meta:
+  title: 备注页能力示例
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  params:
+    style: {body_fs_min: 14}   # 功能演示降准（正文为备注功能示例素材，非排版规范 demo）
+  framework:
+    footer:
+      text: 第 {page} 页
+      align: right
+      fs: 9
+  slides:
+    - title: 封面
+      elements:
+        - id: title
+          type: text
+          rect: [2.0, 2.6, 9.0, 1.2]
+          text: 备注页能力示例
+          text_style: {fs: 32, bold: true}
+        - id: sub
+          type: text
+          rect: [2.0, 4.0, 9.0, 0.7]
+          text: 封面页 · 无备注（不建 notes part）
+          text_style: {fs: 16}
+    - title: 正文一
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.0, 11.7, 0.9]
+          text: 正文第一页
+          text_style: {fs: 24, bold: true}
+        - id: body1
+          type: text
+          rect: [0.8, 2.2, 11.7, 3.0]
+          text: 本页带多行备注：排练时可以照着讲。
+          text_style: {fs: 14}
+      notes: |
+        本页要点：
+        1. 先交代背景与目标；
+        2. 再给出方案框架。
+    - title: 正文二
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.0, 11.7, 0.9]
+          text: 正文第二页
+          text_style: {fs: 24, bold: true}
+        - id: body2
+          type: text
+          rect: [0.8, 2.2, 11.7, 3.0]
+          text: 本页带一行备注。
+          text_style: {fs: 14}
+      notes: "数据口径：口径 A / 口径 B 已对齐。"

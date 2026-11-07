@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+# 示例 1：流程图（graph 容器 branch）—— nodes/edges/groups 声明式
+#
+# graph 容器是 flowchart 的核心积木：BFS 分层 + 磁吸端口 + 自适应列宽 + 紧凑回边。
+# 本示例含 graph 的全部特性：src/proc/judge/end 四族节点、边缘标签（是/否）、
+# orth 回边（"否" 走下方紧凑回折）、分组包络（主流程）。
+#
+# group: true → 跑 --com 时容器内节点/标签由 COM Group 组合成 Office 组对象
+# （拖动整体移动，层级保持）。
+meta:
+  title: 付款流程
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, r: 0.5, t: 0.5, b: 0.5}
+  # 图面框架层（不进 IR，豁免遮挡/安全区校验；z 语义：背景=0 最底，页眉/页脚最顶）
+  framework:
+    background:
+      fill: {grad: ["#FFFFFF", "#EAF1F9"]}   # 全幅背景渐变（两色字面 hex）
+    header: {text: "付款处理流程 · 财务共享中心", align: right, fs: 10, color: deep}
+    footer: {text: "机密 · 第 {page} 页", align: right, fs: 9, color: deep}
+palette:
+  deep: "#1F2A44"
+  blue: "#2D6CDF"
+  warn: "#FFF3C4"
+  bg: "#F2F5FA"
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 12.0, 0.9]
+    text: "付款流程"
+    text_style: {fs: 32, color: deep, bold: true, align: left}
+  - id: g
+    type: graph
+    rect: [0.5, 1.6, 12.33, 5.4]
+    start: start
+    group: true
+    nodes:
+      - {id: start, text: "开始", kind: src}
+      - {id: pay, text: "发起支付", kind: proc}
+      - {id: chk, text: "验签通过？", kind: judge}
+      - {id: ok, text: "支付成功", kind: end}
+      - {id: fail, text: "支付失败", kind: end}
+    edges:
+      - {from: start, to: pay}
+      - {from: pay, to: chk}
+      - {from: chk, to: ok, label: "是"}
+      - {from: chk, to: fail, label: "否", way: orth}
+    groups:
+      - {id: g_main, label: "主流程", members: [start, pay, chk]}

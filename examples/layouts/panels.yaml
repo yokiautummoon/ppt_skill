@@ -1,0 +1,40 @@
+# examples/layouts/panels.yaml — 内容页结构生成样板 · panels（并行面板/要点区）
+#
+# 内容处理转换律落地：agent 只给结构化内容（items）。布局（均分网格 / 首板全宽
+# 横幅）由引擎确定性展开（references/page-intents.md §10）。
+#   变体：even（均分网格，缺省轮换首项）/ hero_left（首板全宽 + 余项网格）。
+meta:
+  title: 内容版式 · panels
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme: nsfc_blue
+  framework:
+    header: {text: "内容版式样板", align: right, fs: 10, color: muted}
+    footer: {text: "第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    - title: panels even
+      page_intent: panels
+      panels:
+        title: 三条并行要点
+        cols: 3
+        items:
+          - head: 选题聚焦
+            body: 收敛到可验证的核心问题，避免面面俱到。
+          - head: 方法稳健
+            body: 双路径互证 + 独立重算断言，拒绝单点结论。
+          - head: 证据完备
+            body: 逐页物证核对，交付前机器可证。
+    - title: panels hero_left
+      page_intent: panels
+      panels:
+        title: 首板全宽 + 余项网格
+        cols: 2
+        variant: hero_left
+        items:
+          - head: 主结论（全宽横幅）
+            body: 引擎把首个要点提升为全宽横幅，形成主次分明的阅读动线。
+          - head: 支撑一
+            body: 余下要点落入均分网格。
+          - head: 支撑二
+            body: 版面由内容结构自动解出。

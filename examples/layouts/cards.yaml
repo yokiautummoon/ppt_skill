@@ -1,0 +1,28 @@
+# examples/layouts/cards.yaml — 内容页结构生成样板 · cards（图标/编号卡网格）
+# 变体：icon_top（图标顶饰，首项）/ number（大号编号顶饰）/ icon_left（图标左置）。
+meta:
+  title: 内容版式 · cards
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme: nsfc_blue
+  slides:
+    - title: cards icon_top
+      page_intent: cards
+      cards:
+        title: 能力卡（图标顶饰）
+        cols: 3
+        items:
+          - {icon: palette, head: 设计语言, body: deck 级角色色 + 类型尺度}
+          - {icon: layout-grid, head: 结构生成, body: 引擎按内容解版式}
+          - {icon: shield-check, head: 物证背书, body: 逐页机器可证}
+    - title: cards number
+      page_intent: cards
+      cards:
+        title: 流程卡（大号编号）
+        variant: number
+        cols: 3
+        items:
+          - {head: 输入, body: 结构化内容}
+          - {head: 展开, body: 确定性版式}
+          - {head: 校验, body: 断言背书}

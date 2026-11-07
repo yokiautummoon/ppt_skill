@@ -1,0 +1,32 @@
+# 母版版式「提炼」示例：meta.template mode=extract
+# 样式卡的 slide/palette/framework/params 按 fill-only 注入（agent 显式声明优先）。
+meta:
+  title: 品牌色萃取示例（extract）
+  style_guide: dashboard
+  template:
+    src: brand.pptx              # 相对本文件解析；keys 限 slide/palette/framework/params
+    mode: extract
+    keys: [slide, palette, framework, params]
+palette:
+  prim: "#2D6CDF"
+  deep: "#1F2A44"
+elements:
+  - id: title
+    type: text
+    rect: [0.7, 0.5, 8.6, 0.9]
+    text: 从模板萃取样式
+    text_style: {fs: 32, color: deep, align: left}
+  - id: badge
+    type: shape
+    kind: rounded_rect
+    rect: [0.7, 1.7, 3.2, 0.9]
+    text: accent1 = #2D6CDF
+    style: {fill: accent1}       # 注入的模板 token 可直接引用
+    text_style: {fs: 14, color: "#FFFFFF"}
+  - id: note
+    type: text
+    rect: [0.7, 3.0, 6.0, 2.0]
+    text: "页面尺寸/主题色/字族/框架背景均来自 brand.pptx：
+          slide=10×5 · palette.accent1 ← #2D6CDF · framework 背景 ← 母版底色
+          · params.font ← 模板字族。主题槽在渲染后写回 theme1.xml（原生 UI 品牌色）。"
+    text_style: {fs: 14, color: deep, align: left}

@@ -1,0 +1,65 @@
+# examples/research/sci.yaml — 科研三件套页型（C1）：problem / versus / route
+#
+# 承接 page_intent 审定菜单（references/page-intents.md §8）：科研论文/汇报的三块
+# 高频破格拼图——问题陈述、方案对照、技术路线。agent 只选意图 token，布局由引擎
+# 确定性展开（每原型 = 布局代码 + verify 断言）；rect 全由 ir_builder 解出。
+#   page_intent: problem → prb_badge 左上大号 accent 问题标记（纵向贯穿 = 破格点）
+#     + 主问题左对齐（非居中 = 破格点）+ 编号子问题清单（声明 items 才展开）。
+#   page_intent: versus  → 左右分色面板（对立着色）+ 栏题/栏体 + 中缝分割线 +
+#     "VS" 圆标（居中对称锚）；两栏等宽（均衡断言）背书。
+#   page_intent: route   → 可选页题 + N 个等距 hexagon 阶段条（数量 = len(stages)）
+#     + 阶段间箭头连线；阶段链横向铺满版心（等距 + 横向贯穿断言）。
+#   --com 无要求（引擎展开 = 普通元素/线，渲染照常，零 Office 全链可证）。
+meta:
+  title: 科研三件套 · 问题 / 对照 / 路线（审定菜单）
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  framework:
+    header: {text: "方法研究 · 2026", align: right, fs: 10, color: muted}
+    footer: {text: "第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：问题陈述（problem） ============
+    - title: 问题陈述
+      page_intent: problem
+      problem:
+        title: 现有方法在高噪声长序列上误差累积
+        items:
+          - 递推式状态估计对异常点敏感，单点漂移沿时间轴放大
+          - 离线批处理无法满足在线推理的延迟上限（<20 ms）
+          - 标注成本高，监督信号稀疏，端到端训练易过拟合
+        accent: acc
+
+    # ============ 页 2：方案对照（versus） ============
+    - title: 方案对照
+      page_intent: versus
+      versus:
+        left_title: 基线：卡尔曼滤波族
+        right_title: 本方法：鲁棒随机滤波
+        left_items:
+          - 高斯噪声假设，异常点直接污染后验
+          - 线性化误差在强非线性段放大
+          - 无需训练，部署零成本
+        right_items:
+          - 重尾似然建模，异常点自动降权
+          - 逐点在线更新，延迟 <15 ms
+          - 稀疏标注下样本效率提升 3.2×
+        vs: VS
+        accent: acc
+
+    # ============ 页 3：技术路线（route） ============
+    - title: 技术路线
+      page_intent: route
+      route:
+        title: 四阶段研究路线
+        stages:
+          - 问题建模
+          - 鲁棒滤波
+          - 在线推理
+          - 实证验证
+        accent: acc
+
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  muted: "#8899AA"

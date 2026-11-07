@@ -1,0 +1,40 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---- 生成产物 ----
+**/out/
+out_*/
+examples/typst/typst_cache/
+examples/typst/base.pptx
+examples/typst/ir.json
+examples/typst/report.md
+scripts/typst-cli/_probe/
+
+# typst CLI 二进制不入库（README 说明下载位置）
+scripts/typst-cli/typst.exe
+
+# ---- 本地探针 / agent 状态 ----
+_probe/*
+!_probe/*.yaml
+!_probe/assets/
+!_probe/assets/**
+.omc/
+
+# ---- 根目录草稿与研究笔记 ----
+_*.py
+_*.md
+_*.b64
+RESEARCH_*.md
+TODO
+*.swp
+D:*
+
+# ---- 系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

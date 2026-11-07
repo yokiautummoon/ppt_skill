@@ -1,0 +1,152 @@
+# icon.yaml — B1 矢量图标库示例（Lucide → custGeom 原生矢量形状）
+# ① 图标画廊：名/关键词解析（icon_lib.resolve）、描边色/磅值（style.color/weight）、
+#    实心子路径（chart-scatter 的点，fill=norm）；
+# ② 应用示例：图标 + 特性卡（图标在卡上方，无遮挡）。
+meta:
+  title: 矢量图标库
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  slides:
+    - title: 图标画廊
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.0, 0.7]
+          text: 矢量图标库 · Lucide → custGeom
+          text_style: {fs: 30, bold: true, align: left}
+        - id: ic_drop
+          type: icon
+          rect: [1.7, 1.85, 1.0, 1.0]
+          icon: 水滴
+          style: {color: '#2D6CDF', weight: 1.6}
+        - id: cp_drop
+          type: text
+          rect: [0.9, 2.95, 2.6, 0.4]
+          text: 水滴 · 关键词
+          text_style: {fs: 16, align: center}
+        - id: ic_gear
+          type: icon
+          rect: [4.5, 1.85, 1.0, 1.0]
+          icon: gear
+          style: {color: '#1F2A44'}
+        - id: cp_gear
+          type: text
+          rect: [3.7, 2.95, 2.6, 0.4]
+          text: settings · 默认磅值
+          text_style: {fs: 16, align: center}
+        - id: ic_chart
+          type: icon
+          rect: [7.3, 1.85, 1.0, 1.0]
+          icon: 图表
+          style: {color: '#C00000', weight: 2.0}
+        - id: cp_chart
+          type: text
+          rect: [6.5, 2.95, 2.6, 0.4]
+          text: 图表 · 加粗描边
+          text_style: {fs: 16, align: center}
+        - id: ic_scatter
+          type: icon
+          rect: [10.1, 1.85, 1.0, 1.0]
+          icon: chart-scatter
+          style: {color: '#2E9E6B', weight: 1.8}
+        - id: cp_scatter
+          type: text
+          rect: [9.3, 2.95, 2.6, 0.4]
+          text: 散点 · 含实心点
+          text_style: {fs: 16, align: center}
+        - id: ic_shield
+          type: icon
+          rect: [1.7, 3.85, 1.0, 1.0]
+          icon: 安全
+          style: {color: '#8B5CF6', weight: 1.6}
+        - id: cp_shield
+          type: text
+          rect: [0.9, 4.95, 2.6, 0.4]
+          text: 安全 · 盾牌
+          text_style: {fs: 16, align: center}
+        - id: ic_flask
+          type: icon
+          rect: [4.5, 3.85, 1.0, 1.0]
+          icon: 科学
+          style: {color: '#0E7490', weight: 1.6}
+        - id: cp_flask
+          type: text
+          rect: [3.7, 4.95, 2.6, 0.4]
+          text: 科学 · 烧瓶
+          text_style: {fs: 16, align: center}
+        - id: ic_user
+          type: icon
+          rect: [7.3, 3.85, 1.0, 1.0]
+          icon: 用户
+          style: {color: '#B45309', weight: 1.6}
+        - id: cp_user
+          type: text
+          rect: [6.5, 4.95, 2.6, 0.4]
+          text: 用户 · 单人
+          text_style: {fs: 16, align: center}
+        - id: ic_cloud
+          type: icon
+          rect: [10.1, 3.85, 1.0, 1.0]
+          icon: 云
+          style: {color: '#0369A1', weight: 1.6}
+        - id: cp_cloud
+          type: text
+          rect: [9.3, 4.95, 2.6, 0.4]
+          text: 云 · 云端
+          text_style: {fs: 16, align: center}
+    - title: 应用示例
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.62, 11.0, 0.7]
+          text: 应用示例 · 图标 + 特性卡
+          text_style: {fs: 30, bold: true, align: left}
+        - id: ic_f1
+          type: icon
+          rect: [1.75, 1.9, 0.9, 0.9]
+          icon: 灯泡
+          style: {color: '#2D6CDF', weight: 1.8}
+        - id: card1
+          type: shape
+          rect: [0.9, 3.0, 2.6, 2.4]
+          kind: rounded_rect
+          text: 灵感\n发现与创意
+          style: {fill: '#EAF1FC'}
+          text_style: {fs: 16, align: center}
+        - id: ic_f2
+          type: icon
+          rect: [4.55, 1.9, 0.9, 0.9]
+          icon: 火箭
+          style: {color: '#C00000', weight: 1.8}
+        - id: card2
+          type: shape
+          rect: [3.7, 3.0, 2.6, 2.4]
+          kind: rounded_rect
+          text: 交付\n快速上线
+          style: {fill: '#FCEAEA'}
+          text_style: {fs: 16, align: center}
+        - id: ic_f3
+          type: icon
+          rect: [7.35, 1.9, 0.9, 0.9]
+          icon: 目标
+          style: {color: '#2E9E6B', weight: 1.8}
+        - id: card3
+          type: shape
+          rect: [6.5, 3.0, 2.6, 2.4]
+          kind: rounded_rect
+          text: 目标\n聚焦关键
+          style: {fill: '#E7F5EE'}
+          text_style: {fs: 16, align: center}
+        - id: ic_f4
+          type: icon
+          rect: [10.15, 1.9, 0.9, 0.9]
+          icon: 安全
+          style: {color: '#8B5CF6', weight: 1.8}
+        - id: card4
+          type: shape
+          rect: [9.3, 3.0, 2.6, 2.4]
+          kind: rounded_rect
+          text: 安全\n稳定可控
+          style: {fill: '#F1ECFC'}
+          text_style: {fs: 16, align: center}

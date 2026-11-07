@@ -1,0 +1,84 @@
+# examples/pageintent/theme.yaml — 设计语言层（meta.theme）+ 类型尺度（text_style.scale）
+#
+# 演示「每页像被设计过」的两条引擎侧杠杆（SKILL.md Step 2 / Step 3）：
+#   ① meta.theme：一次声明 deck 级设计语言（色彩角色 / 类型尺度 / 字族 / 几何），
+#      内容与页型页自动继承——色彩角色名可直接作 palette token（fill/color/accent）。
+#   ② text_style.scale：hero/title/subtitle/body/caption 五档取主题字号，
+#      并按 role 分离标题/正文字族（逐元素 fs 仍可覆盖）。
+# 用法：win_py -X utf8 scripts/build_ppt.py examples/pageintent/theme.yaml --out out_theme
+meta:
+  title: 设计语言 · theme
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme: nsfc_blue                       # 命名预设：deck 级色彩角色 + 类型尺度
+  brief: >
+    演示设计语言层：deck 级主题一次声明全篇贯穿（色彩角色/类型尺度/字族），
+    内容页用 text_style.scale 取主题字号。数据为示例占位。
+  framework:
+    header: {text: "设计语言层", align: right, fs: 10, color: muted}
+    footer: {text: "第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：封面（主题 accent = primary 角色名） ============
+    - title: 封面
+      page_intent: cover
+      framework: {footer: {text: ""}}        # 封面不计页码
+      cover:
+        title: 设计语言层
+        subtitle: deck 级色彩角色 + 类型尺度一次声明全篇贯穿
+        meta: ppt-builder · 2026
+        accent: primary                      # 主题色彩角色名直接作 token
+
+    # ============ 页 2：类型尺度（text_style.scale 五档 + 角色色 token） ============
+    - title: 类型尺度
+      relations:
+        overlap:
+          - {id: panel_txt, with: panel}     # 文本块叠于面板之上（合法遮挡声明）
+          - {id: ico, with: panel}           # 图标叠于面板之上
+      elements:
+        - id: title
+          type: text
+          rect: [0.6, 0.75, 12.1, 1.4]
+          text: "类型尺度"
+          text_style: {scale: hero, align: left}
+        - id: sub
+          type: text
+          rect: [0.6, 2.35, 12.1, 0.6]
+          text: "hero / title / subtitle / body / caption 五档字号，按 role 分字体族"
+          text_style: {scale: subtitle, align: left, color: muted}
+        - id: body
+          type: text
+          rect: [0.6, 3.5, 6.1, 2.0]
+          text: "正文使用 body 档；关键术语 [[强调]] 走主题强调色。字号缺省由主题提供，逐元素 fs 仍可覆盖。"
+          text_style: {scale: body, align: left}
+        - id: caption
+          type: text
+          rect: [0.6, 5.7, 6.1, 0.5]
+          text: "caption 档用于图注 / 脚注"
+          text_style: {scale: caption, align: left, color: muted}
+        - id: panel
+          type: shape
+          kind: rounded_rect
+          rect: [7.0, 3.5, 5.7, 2.5]
+          style: {fill: panel, border: panel_line}
+        - id: ico
+          type: icon
+          rect: [7.4, 3.85, 0.6, 0.6]
+          icon: palette                       # 图标随主题角色着色
+          style: {color: emph}
+        - id: panel_txt
+          type: text
+          rect: [7.4, 4.65, 4.9, 1.15]
+          text: "主题色彩角色可直接作 palette token：panel 底 / panel_line 描边 / emph 强调 / muted 弱化。"
+          text_style: {scale: body, align: left}
+
+    # ============ 页 3：指标（引擎结构生成 + 主题 accent） ============
+    - title: 指标
+      page_intent: kpis
+      kpis:
+        title: 关键指标
+        accent: emph                         # 主题强调色角色名
+        items:
+          - {value: "60–70%", label: 主色支配度}
+          - {value: 5, label: 类型尺度档}
+          - {value: 6, label: 命名预设}

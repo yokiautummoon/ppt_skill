@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+# 示例：图片占位（B3 借鉴 ppt-studio）——缺图不静默，产提示词清单
+#
+# image 元素两种占位写法：
+#   placeholder: "提示词"       提示字符串即生成提示词（也进 img_prompts.md）
+#   placeholder: true           + caption 作提示词/占位框文案
+# src 文件缺失（已声明路径但文件不在）同样降级为占位框并列入清单。
+# 缺省行为：占位框渲染（虚线）+ out_dir/img_prompts.md 逐条提示；
+# `--strict-images`：占位/缺图即编译错（exit 2），用于交付前"图必须齐"的闸门。
+meta:
+  title: 图片占位演示
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, r: 0.5, t: 0.5, b: 0.5}
+palette:
+  deep: "#1F2A44"
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 12.0, 0.75]
+    text: "图片占位与提示词清单"
+    text_style: {fs: 32, color: deep, bold: true, align: left}
+  - id: fig_process
+    type: image
+    rect: [0.8, 1.6, 5.6, 3.6]
+    placeholder: "实验室工艺流程图：原料→预处理→合成→表征→封装，扁平线性图标风，主色 #2D6CDF"
+  - id: fig_result
+    type: image
+    rect: [6.9, 1.6, 5.6, 3.6]
+    placeholder: true
+    caption: "结果对比照片（实验组 / 对照组并排，白底无标注）"
+  - id: note
+    type: text
+    rect: [0.8, 5.5, 11.7, 1.2]
+    text: "两张图均为占位：补齐图片后在 SPEC 补上 src（或替换占位声明）重跑即可；缺图清单见 out_dir/img_prompts.md。"
+    text_style: {fs: 14, color: deep, align: left}

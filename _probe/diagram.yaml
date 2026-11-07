@@ -1,0 +1,16 @@
+meta:
+  title: diagram-demo
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, r: 0.5, t: 0.5, b: 0.5}
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 8.0, 0.8]
+    text: "架构图（逃生通道）"
+    text_style: {fs: 30, color: "#1F2A44", bold: true, align: left}
+  - id: arch
+    type: diagram
+    rect: [1.5, 1.8, 10.3, 5.2]
+    src: tiny.png
+    caption: "mermaid → vsdx → PNG 预渲染产物"

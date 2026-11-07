@@ -1,0 +1,79 @@
+# link.yaml — 元素级超链接积木示例（url / 页内跳转 / email）
+# 任意非容器元素可挂 link: {url|slide|email}（三选一），渲染注入 cNvPr
+# a:hlinkClick（零 COM）：
+#   - url:   外部链接（https://…）
+#   - slide: 页内跳转（1-based 页号；编译期拦越界与自跳）
+#   - email: 邮件（自动 mailto: 前缀）
+# 容器（stack/dock/graph）与 ph 占位符元素不支持 link（编译期拦）。
+palette:
+  soft: "#EAF1F9"
+meta:
+  title: 超链接示例
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  params:
+    style: {body_fs_min: 14}   # 功能演示降准（正文为超链接功能示例素材）
+  framework:
+    footer:
+      text: '第 {page} 页 · 超链接演示'
+      align: right
+      fs: 9
+  slides:
+    - title: 目录页（三种链接）
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.8, 11.0, 1.0]
+          text: 三种超链接
+          text_style: {fs: 32, bold: true, align: left}
+        - id: sub
+          type: text
+          rect: [0.8, 1.9, 11.0, 0.6]
+          text: 以下索引卡各挂一种链接（单击跳转）
+          text_style: {fs: 14, align: left}
+        - id: www
+          type: shape
+          kind: rounded_rect
+          rect: [0.8, 2.8, 5.2, 0.9]
+          text: 外链 · 打开文档站
+          style: {fill: soft}
+          link: {url: "https://www.microsoft.com"}
+        - id: to_p2
+          type: shape
+          kind: rounded_rect
+          rect: [0.8, 3.9, 5.2, 0.9]
+          text: 跳转 → 第 2 页
+          style: {fill: soft}
+          link: {slide: 2}
+        - id: email
+          type: shape
+          kind: rounded_rect
+          rect: [0.8, 5.0, 5.2, 0.9]
+          text: 发邮件 · 联系作者
+          style: {fill: soft}
+          link: {email: "demo@example.com"}
+    - title: 正文一（跳转目标）
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.2, 11.0, 1.0]
+          text: 第 2 页 · 目录卡的跳转目标
+          text_style: {fs: 32, bold: true, align: left}
+        - id: body
+          type: text
+          rect: [0.8, 2.4, 11.0, 3.0]
+          text: 从第 1 页「跳转 → 第 2 页」卡片单击即可到达本页。
+          text_style: {fs: 14, align: left}
+    - title: 正文二
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.2, 11.0, 1.0]
+          text: 第 3 页 · 纯内容页
+          text_style: {fs: 32, bold: true, align: left}
+        - id: body
+          type: text
+          rect: [0.8, 2.4, 11.0, 3.0]
+          text: 本页无链接目标被引用，仅演示多页结构下的页码有效性。
+          text_style: {fs: 14, align: left}

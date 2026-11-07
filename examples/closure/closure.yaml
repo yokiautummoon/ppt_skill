@@ -1,0 +1,213 @@
+# closure.yaml — 演示交付闭环总验收示例（五件套 + 图面积木全链 demo）
+#
+# 覆盖"交付闭环"的全部能力项：
+#   备注页    —— slides[i].notes（目录演讲提示 / 收尾词）
+#   页面切换  —— meta.transition 全局 fade/slow（编译期合入每页）
+#   超链接    —— 目录卡 slide: N 页内跳转 + 收尾 email 链接
+#   页码偏移  —— params.framework.page_offset=-1：封面不计页码，正文从 1 起；
+#               封面页级 framework.footer.text="" 清空页脚
+#   PDF 导出  —— build 时加 --pdf 产出 base.pdf（分发给观众）
+#   图面积木  —— 封面 text、目录 shape 卡、table 里程碑、graph 组织树、
+#                chart 增长目标
+#
+# 构建（完整交付链路）：
+#   win_py -X utf8 -W ignore scripts/build_ppt.py examples/closure/closure.yaml \
+#       --out out_closure --pdf --report md
+# 产物：base.pptx（可编辑）+ base.pdf（分发）+ preview PNG + report.md
+meta:
+  title: 星辰智造 · 2026 战略发布会
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  params:
+    framework: {page_offset: -1}       # 封面不计页码 → 正文显示「第 1 页」起
+    style: {body_fs_min: 14}           # 功能演示降准（里程碑表格/卡片为交付链路示例素材）
+  transition: {effect: fade, spd: slow}
+  framework:
+    background:
+      fill: {grad: ["#FFFFFF", "#EAF1F9"]}
+    header: {text: "星辰智造 · 2026 战略发布会", align: right, fs: 10, color: muted}
+    footer: {text: '第 {page} 页', align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：封面（无页脚，不计页码） ============
+    - title: 封面
+      framework:
+        footer: {text: ""}             # 页级覆盖：清空页脚（封面无页码）
+      notes: |
+        开场：感谢到场。今天发布星辰智造 2026 战略，三个关键词——
+        聚焦主业、组织提效、增长倍增。
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 2.2, 11.7, 1.5]
+          text: "星辰智造 · 2026 战略发布会"
+          text_style: {fs: 44, color: deep, bold: true, align: left}
+        - id: t_sub
+          type: text
+          rect: [0.8, 3.8, 11.0, 0.8]
+          text: "聚焦主业 · 组织提效 · 增长倍增"
+          text_style: {fs: 20, color: acc, align: left}
+        - id: t_meta
+          type: text
+          rect: [0.8, 4.7, 8.0, 0.5]
+          text: "战略规划部 · 2026-09-10"
+          text_style: {fs: 12, color: muted, align: left}
+        - id: deco
+          type: shape
+          kind: rect
+          rect: [0.8, 1.75, 3.4, 0.14]
+          style: {fill: acc}
+
+    # ============ 页 2：目录（超链接跳转卡片） ============
+    - title: 目录
+      notes: |
+        三部分内容：先说战略里程碑，再讲组织如何保障，
+        最后是未来三年的增长目标。
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 8.0, 0.8]
+          text: "发布议程"
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: t_hint
+          type: text
+          rect: [0.8, 1.5, 11.0, 0.5]
+          text: "单击卡片跳转到对应章节（本页为第 1 页 · 封面不计页码）"
+          text_style: {fs: 14, color: muted, align: left}
+        - id: c1
+          type: shape
+          kind: rounded_rect
+          rect: [0.8, 2.3, 5.4, 1.0]
+          text: "01 · 战略里程碑"
+          style: {fill: soft}
+          link: {slide: 3}
+        - id: c2
+          type: shape
+          kind: rounded_rect
+          rect: [0.8, 3.5, 5.4, 1.0]
+          text: "02 · 组织保障"
+          style: {fill: soft}
+          link: {slide: 4}
+        - id: c3
+          type: shape
+          kind: rounded_rect
+          rect: [0.8, 4.7, 5.4, 1.0]
+          text: "03 · 增长目标"
+          style: {fill: soft}
+          link: {slide: 5}
+        - id: t_nav
+          type: text
+          rect: [6.7, 2.3, 5.8, 3.4]
+          text: "页面切换已开启（淡入 · 慢速）……\n全片备注可导出 PDF 分发。"
+          text_style: {fs: 14, color: muted, align: left}
+
+    # ============ 页 3：第一章 战略里程碑（原生表格） ============
+    - title: 里程碑
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 11.0, 0.8]
+          text: "01 · 战略里程碑"
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: t_mile
+          type: table
+          rect: [0.8, 1.9, 11.73, 4.6]
+          data:
+            - ["里程碑", "时间", "关键动作", "责任线"]
+            - ["产品重构 1.0", "2026 Q1", "平台化架构切换", "研发中心"]
+            - ["渠道下沉 20 城", "2026 Q2", "代理商体系搭建", "市场中心"]
+            - ["智能制造产线", "2026 Q3", "两班产线投产", "制造中心"]
+            - ["海外首站落地", "2026 Q4", "东南亚试点", "国际业务部"]
+          header: {fs: 13, fill: deep, color: "#FFFFFF", bold: true}
+          body: {fs: 12}
+          borders: true
+
+    # ============ 页 4：第二章 组织保障（纵向组织树） ============
+    - title: 组织保障
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 11.0, 0.8]
+          text: "02 · 组织保障"
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: org
+          type: graph
+          rect: [0.5, 1.7, 12.33, 5.15]
+          orientation: vertical
+          start: ceo
+          group: true
+          nodes:
+            - {id: ceo, text: "战略委员会", kind: src}
+            - {id: rd, text: "研发中心", kind: proc}
+            - {id: op, text: "运营中心", kind: proc}
+            - {id: fn, text: "财务中心", kind: proc}
+            - {id: arch, text: "架构组", kind: proc}
+            - {id: prod, text: "产品组", kind: proc}
+            - {id: plat, text: "平台组", kind: proc}
+            - {id: sup, text: "供应链", kind: proc}
+            - {id: fnd, text: "投融资", kind: proc}
+          edges:
+            - {from: ceo, to: rd}
+            - {from: ceo, to: op}
+            - {from: ceo, to: fn}
+            - {from: rd, to: arch}
+            - {from: rd, to: prod}
+            - {from: op, to: plat}
+            - {from: op, to: sup}
+            - {from: fn, to: fnd}
+          groups:
+            - {id: g_rd, label: "研发线", members: [rd, arch, prod]}
+
+    # ============ 页 5：第三章 增长目标（原生图表） ============
+    - title: 增长目标
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 0.7, 11.0, 0.8]
+          text: "03 · 增长目标"
+          text_style: {fs: 28, color: deep, bold: true, align: left}
+        - id: c_growth
+          type: chart
+          rect: [0.8, 1.8, 7.6, 5.0]
+          chart_type: column_clustered
+          categories: ["2026", "2027", "2028"]
+          series:
+            - {name: 营收（亿）, values: [32, 46, 68]}
+            - {name: 利润（亿）, values: [4.2, 6.8, 10.5]}
+          style: {legend: right, data_labels: true, colors: [acc, accent2]}
+        - id: t_goal
+          type: text
+          rect: [8.7, 1.8, 4.0, 3.4]
+          text: "三年营收复合增长 45%+\n利润增速高于营收增速 5pt+"
+          text_style: {fs: 14, color: deep, align: left}
+
+    # ============ 页 6：收尾（email 链接 + 备注） ============
+    - title: 收尾
+      notes: |
+        感谢聆听。战略细节欢迎会后交流，
+        需求与合作意向欢迎邮件联系战略规划部。
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.8, 11.0, 1.2]
+          text: "感谢聆听"
+          text_style: {fs: 40, color: deep, bold: true, align: center}
+        - id: t_sub
+          type: text
+          rect: [0.8, 3.2, 11.0, 0.6]
+          text: "携手星辰 · 智造未来"
+          text_style: {fs: 16, color: acc, align: center}
+        - id: t_email
+          type: shape
+          kind: rounded_rect
+          rect: [4.17, 4.3, 5.0, 0.9]
+          text: "战略 · 合作意向 → 邮件联系"
+          style: {fill: soft}
+          link: {email: "strategy@xingchen.example"}
+
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  accent2: "#E0A800"
+  muted: "#8899AA"
+  soft: "#EAF1F9"

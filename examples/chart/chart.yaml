@@ -1,0 +1,58 @@
+# -*- coding: utf-8 -*-
+# 示例 4：原生图表（chart 积木）——数据驱动，零 COM
+#
+# type: chart 由 python-pptx add_chart 生成原生 chartSpace + 随附 workbook
+# （Excel 源数据，可双击图表编辑），无需 Office 进程。
+# 数据账目（categories/series.values 个数）在编译期背书；序列色 = style.colors
+# 的 palette token 或 params.chart.colors 默认循环；标题不进图（has_title=False），
+# 排版归 SPEC 的 text 元素掌控。
+meta:
+  title: 销售看板
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.5, r: 0.5, t: 0.5, b: 0.5}
+  framework:
+    background:
+      fill: {grad: ["#FFFFFF", "#EAF1F9"]}
+    header: {text: "2026 上半年销售分析", align: right, fs: 10, color: deep}
+    footer: {text: "第 {page} 页 · 内部数据", align: right, fs: 9, color: deep}
+palette:
+  deep: "#1F2A44"
+  acc: "#2D6CDF"
+  accent2: "#1FA88C"
+  accent3: "#B4536B"
+  soft: "#F2F5FA"
+elements:
+  - id: title
+    type: text
+    rect: [0.6, 0.5, 12.0, 0.75]
+    text: "销售看板（原生图表）"
+    text_style: {fs: 32, color: deep, bold: true, align: left}
+  - id: caption
+    type: text
+    rect: [0.6, 1.3, 7.0, 0.3]
+    text: "单位：万元（季度累计口径）"
+    text_style: {fs: 10, color: deep, align: left}
+  - id: c_sales
+    type: chart
+    rect: [0.5, 1.6, 7.2, 5.4]
+    chart_type: column_clustered
+    categories: [Q1, Q2, Q3, Q4]
+    series:
+      - {name: 华东, values: [12.4, 15.1, 13.8, 18.2]}
+      - {name: 华南, values: [9.2, 11.0, 10.5, 14.1]}
+      - {name: 华北, values: [7.5, 8.8, 9.9, 12.3]}
+    style:
+      legend: right
+      data_labels: true
+      colors: [acc, accent2, accent3]
+  - id: c_pie
+    type: chart
+    rect: [8.0, 1.6, 4.8, 5.4]
+    chart_type: pie
+    categories: ["华北", "华南", "华东", "其他"]
+    series:
+      - {name: 收入占比, values: [21, 26, 41, 12]}
+    style:
+      legend: bottom
+      colors: [accent2, accent3, acc, soft]

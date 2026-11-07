@@ -1,0 +1,57 @@
+# examples/pageintent/theme_deep.yaml — 设计语言层补强：非蓝配色 + 三明治结构 +
+# 视觉母题 + 衬线标题配对（官方 anthropics/skills pptx SKILL.md 设计半区内化）。
+#
+# 一页一杠杆，机器可证（[design] 行 + verify S8 断言 + evidence 计数）：
+#   ① meta.theme 跨色相命名预设（coral_energy，非蓝）——开篇铁律 "Don't default to blue"
+#   ② structure: sandwich——封面深底（deep）浅字，内容页浅底（破格节奏）
+#   ③ motif: circle_icon——每个图标加 accent 系圆形背衬（全篇重复的视觉母题）
+#   ④ font_pair: serif_sans——标题用衬线（Cambria）、正文无衬线（Calibri）
+# 用法：win_py -X utf8 scripts/build_ppt.py examples/pageintent/theme_deep.yaml --out out_deep
+meta:
+  title: 设计语言补强 · theme_deep
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.5, r: 0.6, b: 0.5}
+  theme:
+    name: coral_energy        # 跨色相预设（珊瑚 × 金 × 藏蓝），非默认蓝
+    structure: sandwich       # 封面/节页深底、内容页浅底（官方 "sandwich" 结构）
+    motif: circle_icon        # 图标加 accent 系圆背衬（官方 "icons in colored circles"）
+    font_pair: serif_sans     # 衬线标题（Cambria）× 无衬线正文（Calibri）
+  brief: >
+    演示设计语言层补强四杠杆：非蓝跨色相配色（coral_energy）+ 三明治背景结构 +
+    视觉母题 circle_icon + 衬线标题×无衬线正文配对。数据为示例占位。
+  framework:
+    footer: {text: "第 {page} 页", align: right, fs: 9, color: muted}
+  slides:
+    # ============ 页 1：封面（sandwich 深底 → 浅字反色） ============
+    - title: 封面
+      page_intent: cover
+      framework: {footer: {text: ""}}        # 封面不计页码
+      cover:
+        title: 设计不再刻板
+        subtitle: 非蓝配色 · 三明治结构 · 视觉母题 · 衬线标题
+        meta: ppt-builder · 2026
+        accent: primary                      # 主题角色名直接作 token
+
+    # ============ 页 2：能力卡（circle_icon 母题 → 每个图标有背衬圆） ============
+    - title: 能力卡
+      page_intent: cards
+      cards:
+        title: 四条防刻板杠杆
+        cols: 4
+        items:
+          - {icon: palette, head: 配色多样, body: 跨色相预设，拒绝默认蓝}
+          - {icon: layers, head: 背景节奏, body: 封面深底、内容页浅底}
+          - {icon: circle-dot, head: 视觉母题, body: 图标加圆背衬，全篇重复}
+          - {icon: type, head: 字族配对, body: 衬线标题 × 无衬线正文}
+
+    # ============ 页 3：指标卡（serif_sans 标题 → Cambria） ============
+    - title: 指标卡
+      page_intent: kpis
+      kpis:
+        title: 设计语言层的可证收益
+        items:
+          - {value: 16, label: 命名预设}
+          - {value: 4, label: 防刻板杠杆}
+          - {value: 3, label: 背景结构}
+          - {value: 2, label: 视觉母题}

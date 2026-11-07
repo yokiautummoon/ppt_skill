@@ -1,0 +1,70 @@
+# pageoffset.yaml — 页码偏移 + 页级 footer 清空示例
+# footer {page} 占位符显示页码 = 实际页号 + params.framework.page_offset：
+#   - 封面页不计页码：页级 framework.footer.text 清空（该页无页脚）；
+#   - 正文 offset=-1：实际第 2 页显示「第 1 页」…（封面不占号）。
+palette:
+  soft: "#EAF1F9"
+meta:
+  title: 页码偏移示例
+  style_guide: deck
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+  params:
+    framework: {page_offset: -1}
+    style: {body_fs_min: 14}   # 功能演示降准（正文为页码偏移功能示例素材）
+  framework:
+    footer:
+      text: '第 {page} 页'
+      align: right
+      fs: 9
+  slides:
+    - title: 封面
+      framework:
+        footer: {text: ""}            # 页级覆盖：清空页脚（封面不计页码）
+      elements:
+        - id: title
+          type: text
+          rect: [2.0, 2.6, 9.3, 1.2]
+          text: 页码偏移示例
+          text_style: {fs: 32, bold: true}
+        - id: sub
+          type: text
+          rect: [2.0, 4.0, 9.3, 0.7]
+          text: 封面无页脚 · 正文页码从 1 起（offset=-1）
+          text_style: {fs: 14}
+    - title: 正文一
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.2, 11.7, 1.0]
+          text: 正文第一页（实际第 2 页）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: body
+          type: text
+          rect: [0.8, 2.4, 11.7, 2.0]
+          text: 页脚应显示「第 1 页」——实际页号 2 + offset(-1)。
+          text_style: {fs: 14, align: left}
+    - title: 正文二
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.2, 11.7, 1.0]
+          text: 正文第二页（实际第 3 页）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: body
+          type: text
+          rect: [0.8, 2.4, 11.7, 2.0]
+          text: 页脚应显示「第 2 页」。
+          text_style: {fs: 14, align: left}
+    - title: 正文三
+      elements:
+        - id: title
+          type: text
+          rect: [0.8, 1.2, 11.7, 1.0]
+          text: 正文第三页（实际第 4 页）
+          text_style: {fs: 32, bold: true, align: left}
+        - id: body
+          type: text
+          rect: [0.8, 2.4, 11.7, 2.0]
+          text: 页脚应显示「第 3 页」。
+          text_style: {fs: 14, align: left}

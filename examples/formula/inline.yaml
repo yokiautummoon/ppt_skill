@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+# 示例：公式放进文本框（与文字同流）——`{{…}}` 富文本公式标记
+#
+# 承载规则（实测 PowerPoint 原生同形）：
+#   - 与文字同一行 → 行内式 a14:m/m:oMath（例如 “质能方程 {{E=mc^2}} 表明…”）
+#   - 独占一行/一段 → 显示式 a14:m/m:oMathPara（公式居中成行）
+#   - 无需为公式新建独立形状；type: formula 只是“整块公式”的便捷写法
+meta:
+  title: 文本框内公式
+  style_guide: flowchart
+  slide: {w: 13.333, h: 7.5}
+  margin: {l: 0.6, t: 0.6, r: 0.6, b: 0.6}
+palette:
+  ink: "#1F2A44"
+  blue: "#2D6CDF"
+elements:
+  - id: title
+    type: text
+    rect: [0.8, 0.7, 11.7, 0.8]
+    text: "文本内公式：{{E=mc^2}} 与原位解释"
+    text_style: {fs: 22, color: ink, align: left}
+  - id: body
+    type: text
+    rect: [0.8, 2.0, 11.7, 2.6]
+    text: "公式可以放进既有文本框，与文字同流：\n{{a/b + x^2 + c_i}}\n同一行也支持：圆面积 {{S=π r^2}} 与周长 {{C=2π r}}。"
+    text_style: {fs: 18, color: ink, align: left}
+  - id: note
+    type: text
+    rect: [0.8, 5.2, 11.7, 1.0]
+    text: "独占一段的公式使用显示式（m:oMathPara）；与文字同行的公式使用行内式（m:oMath）。"
+    text_style: {fs: 14, color: blue, align: left}
