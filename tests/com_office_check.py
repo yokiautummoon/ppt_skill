@@ -20,18 +20,19 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD = os.path.join(ROOT, "scripts", "build_ppt.py")
-VSDX = (r"D:/Downloads/Zen Browser/file/小行星支持系统/5.3_灾害评估与救援支持系统"
-        r"工艺技术方案_image/图5-3-10_救援方案制定支持分系统组成图.vsdx")
+# OLE 用例需要一个真实的 .vsdx；未提供时跳过（不伪造通过）
+VSDX = os.environ.get("PPT_OLE_VSDX", "")
 
 
-def run_spec(name, rel, expect, extra_yaml=""):
+def run_spec(name, rel, expect):
     spec = os.path.join(ROOT, rel)
     with tempfile.TemporaryDirectory() as td:
-        if extra_yaml:
-            # OLE：注入真实 vsdx 路径到 spec 深拷贝
+        text = open(spec, encoding="utf-8").read()
+        if "__VSDX__" in text:
+            # OLE：把夹具占位符换成真实 vsdx 路径后再编译
             tmp_spec = os.path.join(td, "spec.yaml")
-            text = open(spec, encoding="utf-8").read().replace("__VSDX__", VSDX)
-            open(tmp_spec, "w", encoding="utf-8").write(text)
+            open(tmp_spec, "w", encoding="utf-8").write(
+                text.replace("__VSDX__", VSDX))
             spec = tmp_spec
         r = subprocess.run([sys.executable, "-X", "utf8", "-W", "ignore",
                             BUILD, spec, "--out", td, "--com", "--com-strict",
@@ -110,7 +111,10 @@ def main():
     results = []
     results.append(run_spec("glue 绑定+随动", "_probe/glue.yaml", ["glue", "follow"]))
     results.append(run_spec("group 组合", "examples/flowchart/chart.yaml", ["groups"]))
-    results.append(run_spec("OLE vsdx", "_probe/ole_vsdx.yaml", ["ole"]))
+    if VSDX and os.path.isfile(VSDX):
+        results.append(run_spec("OLE vsdx", "_probe/ole_vsdx.yaml", ["ole"]))
+    else:
+        print("[SKIP] OLE vsdx: 未设置 PPT_OLE_VSDX（本地 .vsdx 路径）")
     results.append(run_spec("动画 COM 构造", "examples/animation/chart.yaml", ["anim"]))
     results.append(run_template_com("extract COM 真打开", "examples/template/extract.yaml"))
     results.append(run_template_com("seed COM 真打开", "examples/template/seed.yaml"))

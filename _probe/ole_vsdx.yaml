@@ -9,6 +9,6 @@ palette:
 elements:
   - id: arch
     type: diagram
-    src: "D:/Downloads/Zen Browser/file/小行星支持系统/5.3_灾害评估与救援支持系统工艺技术方案_image/图5-3-10_救援方案制定支持分系统组成图.vsdx"
+    src: "__VSDX__"   # com_office_check 运行时替换为 PPT_OLE_VSDX 指向的真实文件
     rect: [1.0, 1.0, 8.0, 4.5]
     caption: 救援方案制定支持分系统组成图
